@@ -49,6 +49,31 @@ class Pages extends Component
         return Page::paginate(5);
     }
     
+     /**
+     * update page function 
+     *
+     * @return void
+     */
+    public function update(){
+        // problem with validation for slug when trying the update
+        $this->validate();
+        Page::find($this->modelId)->update($this->modelData());
+        $this->modalFormVisible = false;
+    }
+    
+    /**
+     * delete page function 
+     *
+     * @return void
+     */
+    public function delete(){
+        Page::destroy($this->modelId);
+        $this->modalFormDeleteVisible = false;
+        //reset paginator 
+        $this->resetPage();
+    }
+
+
         /**
      * rules for validation
      *
@@ -58,7 +83,7 @@ class Pages extends Component
     public function rules(){
         return [
             'title' => 'required',
-            'slug' => ['required', Rule::unique('pages','slug')],
+            'slug' => ['required', Rule::unique('pages','slug')->ignore($this->modelId)],
             'content' => 'required'
         ];
     }
@@ -88,17 +113,7 @@ class Pages extends Component
         $this->content = null;
     }
     
-    /**
-     * update the article
-     *
-     * @return void
-     */
-    public function update(){
-        // problem with slug when trying update
-        $this->validate();
-        Page::find($this->modelId)->update($this->modelData());
-        $this->modalFormVisible = false;
-    }
+   
     /**
      * updatedTitle take the value of the title 
      * and assign to the slug everytime it's changed
