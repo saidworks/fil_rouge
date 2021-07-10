@@ -3,7 +3,7 @@
 namespace App\Http\Livewire;
 use Livewire\Component;
 use Livewire\WithPagination;
-
+use Livewire\WithFileUploads;
 use App\Models\Page;
 // used to validate slugs in our form validation 
 use Illuminate\Validation\Rule;
@@ -192,7 +192,7 @@ class Pages extends Component
        $this->modelId = $id;
        $this->modalFormDeleteVisible = true;
     }
-
+    
     /**
      * the livewire render function 
      *
