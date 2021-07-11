@@ -15,8 +15,9 @@ class Pages extends Component
     public $slug;
     public $title;
     public $content;
+    public $image;
     public $modelId;
-    use WithPagination;
+    use WithPagination,WithFileUploads;
     public $isSetToDefaultHomePage;
     public $isSetToDefaultNotFoundPage;
     
@@ -91,7 +92,8 @@ class Pages extends Component
         return [
             'title' => 'required',
             'slug' => ['required', Rule::unique('pages','slug')->ignore($this->modelId)],
-            'content' => 'required'
+            'content' => 'required',
+            'image' => 'required|image|max:1024'
         ];
     }
 
@@ -101,13 +103,16 @@ class Pages extends Component
      * @return void
      */
     public function modelData(){
+        $image_name = $this->title.$this->image->getClientOriginalName();
         $data= [
             'title' => $this->title,
             'slug' => $this->slug,
             'content' => $this->content,
+            'image' => $image_name,
             'is_default_home' => $this->isSetToDefaultHomePage,
             'is_default_not_found' => $this->isSetToDefaultNotFoundPage
         ];
+        $this->image->storeAs('public/img',$image_name);
         return $data;
     }        
     /**
@@ -177,6 +182,7 @@ class Pages extends Component
         $this->title = $data->title;
         $this->slug = $data->slug;
         $this->content = $data->content;
+        $this->image = $data->image;
         $this->isSetToDefaultHomePage = !$data->is_default_home ? null:true;
         $this->isSetToDefaultNotFoundPage = !$data->is_default_not_found ? null:true;
 

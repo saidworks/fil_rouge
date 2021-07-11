@@ -103,6 +103,9 @@
                     </div>
                     @error('content') <span class="error"> {{ $message }}</span> @enderror
                 </div>   
+                <div class="mt-1">
+                    <input type="file" wire:model.debounce.100000ms="image" name="image" id="">
+                </div>
             </x-slot>
 
             <x-slot name="footer">
