@@ -59,13 +59,17 @@
                 </ul>
             </div>
         </aside>
+        <main class="min-h-screen p-12 p-16 bg-gray-100 sm:w-8/12 md:w-9/12 lg:w-10/12">
+            <section class="text-green-900 divide-y">
+                <h1 class="text-3xl">{{ $title }}</h1>
+                <article>
+                    <div class="text-sm">
+                        {!! $content !!} 
+                    </div>
+                    
+                </article>
+            </section>
+        </main>
     </div>
-    <main class="min-h-screen p-12 p-16 bg-gray-100 sm:w-8/12">
-        <section >
-            <h1>{{ $title }}</h1>
-            <article>
-                {!! $content !!} 
-            </article>
-        </section>
-    </main>
+ 
 </div>
