@@ -1,25 +1,67 @@
 <div>
     <nav class="flex items-center px-3 py-2 bg-gray-900 shadow-lg">
         <div>
-            <button class='items-center block h-8 mr-3 text-gray-400'>
+            <button class='items-center block h-8 mr-3 text-gray-400 hover:text-gray-200 focus:text-gray-200 focus:outline-none sm:hidden'>
                 <svg class="w-8 fill-current" viewBox="0 0 24 24">                            
                     <path fill-rule="evenodd" d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"/>
                 </svg>
             </button>
         </div>
-        <div class="bg-green-500">
-            <a href={{ asset('img/img01.jpg') }} >
+        <div class="flex items-center w-full h-12">
+            <a href="{{ url('/') }}" class="w-full" >
+               <img class="h-12" src="{{ asset('storage/img/logo_white.png') }}">
             </a>
         </div>
-        <div class="bg-blue-500">Top nav links</div>
+        <div class="flex justify-end sm:w-8/12">
+            <ul class="hidden text-xs text-gray-200 sm:block sm:text-left">
+               <a href="{{ url('/login') }}">
+                    <li class="px-4 py-2 cursor-pointer hover:underline">Login</li>
+               </a>
+            </ul>
+        </div>
     </nav>
-    <div>
-        <aside>
-
+    <div class="sm:flex sm:min-h-screen">
+        <aside class="text-gray-700 bg-gray-900 divide-y divide-gray-900 divide-dashed sm:w-4/12">
+            {{-- Desktop Web view --}}
+            <ul class="hidden text-xs text-gray-200 sm:block sm:text-left">
+                <a href="{{ url('home') }}"> <li class="px-4 py-2 text-xs cursor-pointer hover:bg-gray-800">
+                    Home
+                </li></a>
+            </ul>
+            <ul class="hidden text-xs text-gray-200 sm:block sm:text-left">
+                <a href="{{ url('about') }}"> <li class="px-4 py-2 text-xs cursor-pointer hover:bg-gray-800">
+                    About Us
+                </li></a>
+            </ul>
+            <ul class="hidden text-xs text-gray-200 sm:block sm:text-left">
+                <a href="{{ url('contact') }}"> <li class="px-4 py-2 text-xs cursor-pointer hover:bg-gray-800">
+                    Contact
+                </li></a>
+            </ul>
+            {{-- Mobile Web view --}}
+            <div class="block pb-3 divide-y divide-gray-800 sm:hidden">
+                <ul class="text-xs text-gray-200">
+                    <a href="{{ url('home') }}"> <li class="px-4 py-2 text-xs cursor-pointer hover:bg-gray-800">
+                        Home
+                    </li></a>
+                    <a href="{{ url('/about') }}"> <li class="px-4 py-2 text-xs cursor-pointer hover:bg-gray-800">
+                        About
+                    </li></a>
+                    <a href="{{ url('/contact') }}"> <li class="px-4 py-2 text-xs cursor-pointer hover:bg-gray-800">
+                        Contact
+                    </li></a>
+                </ul>
+            {{-- Top Navigation Mobile Web view --}}
+                <ul class="text-xs text-gray-200">
+                    <a href="{{ url('login') }}"> <li class="px-4 py-2 text-xs cursor-pointer hover:bg-gray-800">
+                        Login
+                    </li></a>
+                </ul>
+            </div>
         </aside>
     </div>
-    <main>
-        <section>
+    <main class="min-h-screen p-12 p-16 bg-gray-100 sm:w-8/12">
+        <section >
             <h1>{{ $title }}</h1>
             <article>
                 {!! $content !!} 

@@ -8,4 +8,4 @@ https://laravel-livewire.com/docs/2.x/quickstart
 
 
 
-https://www.positronx.io/laravel-livewire-image-upload-tutorial-with-example/
+

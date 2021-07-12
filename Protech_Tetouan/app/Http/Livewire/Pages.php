@@ -62,11 +62,13 @@ class Pages extends Component
      */
     public function update(){
         // problem with validation for slug when trying the update
+        $this->reset();
         $this->validate();
         $this->unassignDefaultHomePage();
         $this->unassignDefaultNotFoundPage();
         Page::find($this->modelId)->update($this->modelData());
         $this->modalFormVisible = false;
+        
     }
     
     /**
