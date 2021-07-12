@@ -1,1 +1,11 @@
-https://laravel.sillo.org/laravel-8/
+
+
+https://laravel.sillo.org/laravel-8/  (TALL stack reservation)
+
+https://jetstream.laravel.com/2.x/stacks/livewire.html
+
+https://laravel-livewire.com/docs/2.x/quickstart
+
+
+
+https://www.positronx.io/laravel-livewire-image-upload-tutorial-with-example/

@@ -27,6 +27,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
                 Route::get('/pages',function(){
                     return view('admin.pages');
                 })->name('pages');
+                Route::get('/register',function(){
+                    return view('admin.pages');
+                })->name('register');
     }
     );
 

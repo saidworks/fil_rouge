@@ -103,7 +103,9 @@ class Pages extends Component
      * @return void
      */
     public function modelData(){
-        $image_name = $this->title.$this->image->getClientOriginalName();
+        // in case i want to use prefix solution $image_name = $this->title.$this->image->getClientOriginalName();
+        // for separate controller solution for products, services and posts
+        $image_name = $this->image->getClientOriginalName();
         $data= [
             'title' => $this->title,
             'slug' => $this->slug,
