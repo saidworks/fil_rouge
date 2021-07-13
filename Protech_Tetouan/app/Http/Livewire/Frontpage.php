@@ -4,7 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Page;
 use Livewire\Component;
-
+use Illuminate\Support\Facades\DB;
 class Frontpage extends Component
 {
     public $urlslug;
@@ -31,8 +31,17 @@ class Frontpage extends Component
         $this->title = $data->title;
         $this->content = $data->content;
     }
+    public function sideBarLinks(){
+        return DB::table('navigation_menus')
+        ->where('type','=','SidebarNav')
+        ->orderBy('sequence','asc')
+        ->orderBy('created_at','asc')
+        ->get();
+    }
     public function render()
     {
-        return view('livewire.frontpage')->layout('layouts.frontpage');
+        return view('livewire.frontpage',[
+            'sideBarlinks' => $this->sideBarLinks()
+        ])->layout('layouts.frontpage');
     }
 }

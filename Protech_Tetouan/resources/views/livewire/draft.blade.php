@@ -13,4 +13,6 @@
     </div>
 </div>
 {{-- create controller for service and product and a whole system for reservation --}}
+{{-- products and service will need their own controller similar to frontpage controller to include all datas of products and services --}}
+{{-- specify routes for controller for each new component products/services with their own view and datas from database --}}
 

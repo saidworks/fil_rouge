@@ -24,21 +24,12 @@
     <div class="sm:flex sm:min-h-screen">
         <aside class="text-gray-700 bg-gray-900 divide-y divide-gray-900 divide-dashed sm:w-4/12">
             {{-- Desktop Web view --}}
+            @foreach ($sideBarlinks as $item)
             <ul class="hidden text-xs text-gray-200 sm:block sm:text-left">
-                <a href="{{ url('home') }}"> <li class="px-4 py-2 text-xs cursor-pointer hover:bg-gray-800">
-                    Home
-                </li></a>
+                <a href="{{ url($item->slug) }}"> <li class="px-4 py-2 text-xs cursor-pointer hover:bg-gray-800">  {{ $item->label}} </li></a>
             </ul>
-            <ul class="hidden text-xs text-gray-200 sm:block sm:text-left">
-                <a href="{{ url('about') }}"> <li class="px-4 py-2 text-xs cursor-pointer hover:bg-gray-800">
-                    About Us
-                </li></a>
-            </ul>
-            <ul class="hidden text-xs text-gray-200 sm:block sm:text-left">
-                <a href="{{ url('contact') }}"> <li class="px-4 py-2 text-xs cursor-pointer hover:bg-gray-800">
-                    Contact
-                </li></a>
-            </ul>
+            @endforeach
+            
             {{-- Mobile Web view --}}
             <div class="block pb-3 divide-y divide-gray-800 sm:hidden" :class="open ? 'block' : 'hidden'">
                 <ul class="text-xs text-gray-200">

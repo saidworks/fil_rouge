@@ -23,13 +23,17 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
                 Route::get('/dashboard',function(){
                     return view('dashboard');
                 })->name('dashboard');
-                //Pages
+                //Pages / add middleware to register
                 Route::get('/pages',function(){
                     return view('admin.pages');
                 })->name('pages');
                 Route::get('/register',function(){
                     return view('admin.pages');
                 })->name('register');
+                //Navigation menus
+                Route::get('/navigation-menus',function(){
+                    return view('admin.navigation-menus');
+                })->name('navigation-menus');
     }
     );
 

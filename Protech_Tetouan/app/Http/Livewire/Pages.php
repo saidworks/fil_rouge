@@ -62,7 +62,7 @@ class Pages extends Component
      */
     public function update(){
         // problem with validation for slug when trying the update
-        $this->reset();
+        // $this->reset();
         $this->validate();
         $this->unassignDefaultHomePage();
         $this->unassignDefaultNotFoundPage();
@@ -95,7 +95,7 @@ class Pages extends Component
             'title' => 'required',
             'slug' => ['required', Rule::unique('pages','slug')->ignore($this->modelId)],
             'content' => 'required',
-            'image' => 'required|image|max:1024'
+            'image' => 'nullable|image|max:1024'
         ];
     }
 
@@ -107,7 +107,11 @@ class Pages extends Component
     public function modelData(){
         // in case i want to use prefix solution $image_name = $this->title.$this->image->getClientOriginalName();
         // for separate controller solution for products, services and posts
-        $image_name = $this->image->getClientOriginalName();
+        if($this->image){
+        $image_name = $this->image->getClientOriginalName();}
+        else{
+            $image_name = null;
+        }
         $data= [
             'title' => $this->title,
             'slug' => $this->slug,
@@ -116,7 +120,8 @@ class Pages extends Component
             'is_default_home' => $this->isSetToDefaultHomePage,
             'is_default_not_found' => $this->isSetToDefaultNotFoundPage
         ];
-        $this->image->storeAs('public/img',$image_name);
+        if($this->image){
+        $this->image->storeAs('public/img',$image_name);}
         return $data;
     }        
     /**
