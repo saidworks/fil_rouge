@@ -1,9 +1,10 @@
-<div>
+<div class="divide-y divide-gray-800" x-data="{open:false,showText:false,randomVariable:'random text'}">
     <nav class="flex items-center px-3 py-2 bg-gray-900 shadow-lg">
         <div>
-            <button class='items-center block h-8 mr-3 text-gray-400 hover:text-gray-200 focus:text-gray-200 focus:outline-none sm:hidden'>
+            <button @click="open === true ? open = false : open = true " class='items-center block h-8 mr-3 text-gray-400 hover:text-gray-200 focus:text-gray-200 focus:outline-none sm:hidden'>
                 <svg class="w-8 fill-current" viewBox="0 0 24 24">                            
-                    <path fill-rule="evenodd" d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"/>
+                    <path x-show="!open" fill-rule="evenodd" d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"/>
+                    <path x-show="open" fill-rule="evenodd" d="M18.278 16.864a1 1 0 0 1-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 0 1-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 0 1 1.414-1.414l4.829 4.828 4.828-4.828a1 1 0 1 1 1.414 1.414l-4.828 4.829 4.828 4.828z"/>
                 </svg>
             </button>
         </div>
@@ -39,9 +40,9 @@
                 </li></a>
             </ul>
             {{-- Mobile Web view --}}
-            <div class="block pb-3 divide-y divide-gray-800 sm:hidden">
+            <div class="block pb-3 divide-y divide-gray-800 sm:hidden" :class="open ? 'block' : 'hidden'">
                 <ul class="text-xs text-gray-200">
-                    <a href="{{ url('home') }}"> <li class="px-4 py-2 text-xs cursor-pointer hover:bg-gray-800">
+                    <a href="{{ url('home') }}"> <li class="px-4 py-2 text-xs cursor-pointer hover:bg-gray-200">
                         Home
                     </li></a>
                     <a href="{{ url('/about') }}"> <li class="px-4 py-2 text-xs cursor-pointer hover:bg-gray-800">
@@ -52,7 +53,7 @@
                     </li></a>
                 </ul>
             {{-- Top Navigation Mobile Web view --}}
-                <ul class="text-xs text-gray-200">
+                <ul class="text-xs text-gray-200" >
                     <a href="{{ url('login') }}"> <li class="px-4 py-2 text-xs cursor-pointer hover:bg-gray-800">
                         Login
                     </li></a>
