@@ -4,6 +4,7 @@
     <div class='text-center border lg:flex'> {!!  $content !!} </div>
     {{-- create a lot of component that will show based on specific condition --}}
     {{-- in the controller for products/service send all entries from the table to the view --}}
+    {{-- can use a condition inside the main controller to call data for specific table products/services --}}
     @if(str_contains(strtolower($title),'contact'))
     @livewire('counter')
     @endif
