@@ -10,11 +10,23 @@ class Frontpage extends Component
     public $urlslug;
     public $title;
     public $content;
-
+    
+    /**
+     * mount
+     *
+     * @param  mixed $urlslug
+     * @return void
+     */
     public function mount($urlslug = null){
         $this->retrieveContent($urlslug);
     }
-
+    
+    /**
+     * retrieveContent
+     *
+     * @param  mixed $urlslug
+     * @return void
+     */
     public function retrieveContent($urlslug){
         // get home page if we did not specify a slug
         if(empty($urlslug)){
@@ -30,18 +42,41 @@ class Frontpage extends Component
         }
         $this->title = $data->title;
         $this->content = $data->content;
-    }
+    }    
+    /**
+     * sideBarLinks
+     *
+     * @return void
+     */
     public function sideBarLinks(){
         return DB::table('navigation_menus')
         ->where('type','=','SidebarNav')
         ->orderBy('sequence','asc')
         ->orderBy('created_at','asc')
         ->get();
-    }
+    }    
+    /**
+     * TopNavLinks
+     *
+     * @return void
+     */
+    public function TopNavLinks(){
+        return DB::table('navigation_menus')
+        ->where('type','=','TopNav')
+        ->orderBy('sequence','asc')
+        ->orderBy('created_at','asc')
+        ->get();
+    }    
+    /**
+     * render
+     *
+     * @return void
+     */
     public function render()
     {
         return view('livewire.frontpage',[
-            'sideBarlinks' => $this->sideBarLinks()
+            'sideBarLinks' => $this->sideBarLinks(),
+            'topNavLinks' => $this->TopNavLinks()
         ])->layout('layouts.frontpage');
     }
 }
