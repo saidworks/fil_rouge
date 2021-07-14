@@ -5,6 +5,8 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use PhpParser\Node\Stmt\TryCatch;
+use Throwable;
 
 class AccessByRole
 {
@@ -18,15 +20,40 @@ class AccessByRole
      */
     public function handle(Request $request, Closure $next)
     {   
-        echo 'the middleware for access control is running <br>';
-        $userRole = auth()->user()->role;
-        $currentRoute = Route::currentRouteName();
-        echo $userRole;
-        echo "<br>".$currentRoute;
-        exit;
-        return $next($request);
-    }
-    private function  userAccessRole(){
+        try
+        {
+            $userRole = auth()->user()->role;
+            $currentRouteName = Route::currentRouteName();
+            if(in_array($currentRouteName,$this->userAccessRole()[$userRole])){
+                return $next($request);
+            }
+            else{
+                abort(403,'Unauthorized access');
+            }
+        }
         
+        catch(\Throwable $th){
+            abort(403,'Unauthorized access');
+        }
+        
+    }    
+    /**
+     * The list of accessible ressources for a specific user
+     * this will be stored in database later
+     * @return void
+     */
+    private function  userAccessRole(){
+        return [
+            'user' => [
+                'dashboard'
+                        ],
+            'admin' => [
+                'pages',
+                'navigation-menus',
+                'users',
+                'user-permissions',
+                'dashboard'
+            ]
+        ];
     }
 }
