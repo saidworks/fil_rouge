@@ -16,9 +16,10 @@ use App\Http\Livewire\Frontpage;
 
 
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard'); })->name('dashboard');
-    Route::group(['middleware' => ['auth:sanctum','verified']], function(){
+// Route::middleware(['auth:sanctum', 'verified','accessrole'])
+//     ->get('/dashboard', function () {return view('dashboard'); })->name('dashboard');
+
+Route::group(['middleware' => ['auth:sanctum','verified','accessrole']], function(){
                 //dashboard
                 Route::get('/dashboard',function(){
                     return view('dashboard');
