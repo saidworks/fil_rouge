@@ -18,8 +18,8 @@
                                         {{ $item->name }} 
                                     </td>
                                     <td class="px-6 py-3 text-sm whitespace-no-wrap">
-                                        <a class="text-indigo-600 hover:text-indigo-900">
-                                             {{ $item->email }}</a></td>
+                                        <span class="text-indigo-600 hover:text-indigo-900">
+                                             {{ $item->email }}</span></td>
                                     <td class="px-6 py-3 text-sm whitespace-no-wrap">{!! $item->role !!}</td>
                                     <td class="px-6 py-3 text-sm whitespace-no-wrap">
                                         <x-jet-button wire:click="updateShowModal({{ $item->id }})">
@@ -73,7 +73,7 @@
                             <option value="{{ $value }}">{{ $value }}</option>
                         @endforeach
                     </select>
-                    @error('type') <span class="error"> {{ $message }}</span> @enderror
+                    @error('role') <span class="error"> {{ $message }}</span> @enderror
                 </div>  
                 
             </x-slot>

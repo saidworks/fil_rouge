@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\UserPermission;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,7 +25,8 @@ class AccessByRole
         {
             $userRole = auth()->user()->role;
             $currentRouteName = Route::currentRouteName();
-            if(in_array($currentRouteName,$this->userAccessRole()[$userRole])){
+            if( UserPermission::isRoleHasRightToAccess($userRole,$currentRouteName)
+                || in_array($currentRouteName,$this->userAccessRole()[$userRole])){
                 return $next($request);
             }
             else{
@@ -38,25 +40,14 @@ class AccessByRole
         
     }    
     /**
-     * The list of accessible ressources for a specific user
-     * this will be stored in database later
+     * the default user access role for the admin
+     * in case all our user permissions in db are lost
      * @return void
      */
     private function  userAccessRole(){
         return [
-            'user' => [
-                'dashboard',
-                'reservations'
-                        ],
             'admin' => [
-                'pages',
-                'navigation-menus',
-                'users',
                 'user-permissions',
-                'dashboard',
-                'products',
-                'services',
-                'reservations'
             ]
         ];
     }

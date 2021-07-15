@@ -10,10 +10,8 @@
                     <table class='min-w-full divide-y divide-gray-200'>
                         <thead>
                             <tr>
-                                <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">Column 1</th>
-                                <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">Column 2</th>
-                                <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">Column 3</th>
-                                <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">Url</th>
+                                <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">Role</th>
+                                <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">Route Name</th>
                                 <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">Actions</th>
                             </tr>
                         </thead>
@@ -24,14 +22,11 @@
                                     <td class="px-6 py-3 text-sm whitespace-no-wrap">
                                         {{ $item->role }} 
                                     </td>
-                                    <td class="px-6 py-3 text-sm whitespace-no-wrap">
-                                        <a class="text-indigo-600 hover:text-indigo-900">
-                                             {{ $item->sequence }}</a></td>
-                                    <td class="px-6 py-3 text-sm whitespace-no-wrap">{!! $item->label !!}</td>
+                                    
                                     <td class="px-6 py-3 text-sm whitespace-no-wrap">
                                         <a class="text-indigo-600 hover:text-indigo-900"
-                                            href="{{ URL::to($item->slug) }}" 
-                                            target="_blank"> {{ $item->slug }}
+                                            href="{{ URL::to($item->route_name) }}" 
+                                            target="_blank"> {{ $item->route_name }}
                                         </a></td>
                                     <td class="px-6 py-3 text-sm whitespace-no-wrap">
                                         <x-jet-button wire:click="updateShowModal({{ $item->id }})">
@@ -60,52 +55,33 @@
     <div class="mt-4">
         <x-jet-dialog-modal wire:model="modalFormVisible">
             <x-slot name="title">
-                {{ __('Save Page') }} {{ $modelId }}
+                {{ __('Save User Permission') }} {{ $modelId }}
             </x-slot>
     </div>
             <x-slot name="content">
                 <div class="mt-4">
-                    <x-jet-label for="label" value="{{ __('Label') }}" />
-                    <x-jet-input id="label" class="block w-full mt-1" type="text" name="label" wire:model.debounce.800ms='label' />
-                    @error('label') <span class="error"> {{ $message }}</span> @enderror
-                </div>  
-
-                <div class="mt-4">
-                    <x-jet-label for="slug" value="{{ __('Slug') }}" /> 
-                    <span class="items-center px-3 mt-1 text-sm text-gray-500 border border-r-0 border-gray-300 rounded-1-md bg-gray-50">
-                        https://localhost:8000/
-                    </span>
-                    {{-- debounce avoid to many requests at the same time --}}
-                    <x-jet-input id="slug" class="block w-full mt-1 transition duration-150 ease-in-out rounded rounded-r-md sm:text-sm sm:leading-5" wire:model.debounce.800ms='slug' type="text" name="slug" placeholder="url-slug" />
-                    @error('slug') <span class="error"> {{ $message }}</span> @enderror
-                </div>
-                <div class="mt-4">
-                    <x-jet-label for="sequence" value="{{ __('Sequence') }}" />
-                    <x-jet-input id="sequence" class="block w-full mt-1" type="text" name="sequence" wire:model.debounce.800ms='sequence' />
-                    @error('label') <span class="error"> {{ $message }}</span> @enderror
-                </div>  
-
-                <div class="mt-4">
-                    <x-jet-label for="type" value="{{ __('Type') }}" />
-                    <select wire:model="type" class="block w-full px-3 py-3 pr-8 leading-tight text-gray-700 bg-gray-100 border border-gray-200 appearance-none round focus:outline-none focus:bg-white focus:border-gray-500">
-                        <option value="SidebarNav">Sidebar Navigation</option>
-                        <option value="TopNav">Top Navigation </option>
+                    <x-jet-label for="role" value="{{ __('Role') }}" />
+                    <select wire:model="role" class="block w-full px-3 py-3 pr-8 leading-tight text-gray-700 bg-gray-100 border border-gray-200 appearance-none round focus:outline-none focus:bg-white focus:border-gray-500">
+                        <option value="">Select a role</option>
+                        {{-- use method from the model to display options --}}
+                        @foreach (App\Models\User::userRoleList() as $key => $value )
+                            <option value="{{ $value }}">{{ $value }}</option>
+                        @endforeach
                     </select>
-                    @error('type') <span class="error"> {{ $message }}</span> @enderror
-                </div>  
-                {{-- <div class="mt-4">
-                    <label for="">
-                        <input class="form-checkbox" type="checkbox" value="{{ $isSetToDefaultHomePage }}" wire:model="isSetToDefaultHomePage">
-                        <span class="ml-2 text-sm text-gray-600">Set as the default Home Page</span>
-                    </label>
-                </div>  
-                <div class="mt-4">
-                    <label for="">
-                        <input class="form-checkbox" type="checkbox" value="{{ $isSetToDefaultNotFoundPage }}" wire:model="isSetToDefaultNotFoundPage">
-                        <span class="ml-2 text-sm text-red-600">Set as the default 404 Page</span>
-                    </label>
-                </div>  --}}
+                    @error('role') <span class="error"> {{ $message }}</span> @enderror
+                </div> 
 
+                <div class="mt-4">
+                    <x-jet-label for="routeName" value="{{ __('Route Name') }}" />
+                    <select wire:model="routeName" class="block w-full px-3 py-3 pr-8 leading-tight text-gray-700 bg-gray-100 border border-gray-200 appearance-none round focus:outline-none focus:bg-white focus:border-gray-500">
+                        <option value="">Select a route</option>
+                        {{-- use method from the model to display options --}}
+                        @foreach (App\Models\UserPermission::routeNameList() as $item )
+                            <option value="{{ $item }}">{{ $item }}</option>
+                        @endforeach
+                    </select>
+                    @error('routeName') <span class="error"> {{ $message }}</span> @enderror
+                </div>  
             </x-slot>
 
             <x-slot name="footer">
@@ -129,11 +105,11 @@
     <!-- Delete User Confirmation Modal -->
     <x-jet-dialog-modal wire:model="modalFormDeleteVisible">
         <x-slot name="title">
-            {{ __('Delete Page') }}
+            {{ __('Revoke Permission') }}
         </x-slot>
 
         <x-slot name="content">
-            {{ __('Are you sure you want to delete your navigation menu? Once your page is deleted, all of its resources and data will be permanently deleted.') }}
+            {{ __('Are you sure you want to revoke your permission to access for this user? Once your permission is deleted, the user can not access this resource anymore.') }}
 
         </x-slot>
 
@@ -143,7 +119,7 @@
             </x-jet-secondary-button>
 
             <x-jet-danger-button class="ml-2" wire:click="delete" wire:loading.attr="disabled">
-                {{ __('Delete Navigation Item') }}
+                {{ __('Revoke permission') }}
             </x-jet-danger-button>
         </x-slot>
     </x-jet-dialog-modal>

@@ -42,7 +42,7 @@ class UserPermissions extends Component
     public function modelData(){
         $data = [
             'role' => $this->role,
-            'routeName' => $this->routeName
+            'route_name' => $this->routeName,
         ];
         return $data;
     }
@@ -85,7 +85,6 @@ class UserPermissions extends Component
         UserPermission::create($this->modelData()); //5
         $this->modalFormVisible = false;
         $this->reset();
-
     }  
     
        /**
