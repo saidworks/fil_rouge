@@ -58,4 +58,10 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+    static public function userRoleList(){
+        return [
+            'user' => 'user',
+            'admin' => 'admin'
+        ];
+    }
 }

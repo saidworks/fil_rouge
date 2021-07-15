@@ -45,14 +45,18 @@ class AccessByRole
     private function  userAccessRole(){
         return [
             'user' => [
-                'dashboard'
+                'dashboard',
+                'reservations'
                         ],
             'admin' => [
                 'pages',
                 'navigation-menus',
                 'users',
                 'user-permissions',
-                'dashboard'
+                'dashboard',
+                'products',
+                'services',
+                'reservations'
             ]
         ];
     }

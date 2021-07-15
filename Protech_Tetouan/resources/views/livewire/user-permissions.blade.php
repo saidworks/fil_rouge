@@ -10,9 +10,9 @@
                     <table class='min-w-full divide-y divide-gray-200'>
                         <thead>
                             <tr>
-                                <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">Type</th>
-                                <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">Sequence</th>
-                                <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">Label</th>
+                                <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">Column 1</th>
+                                <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">Column 2</th>
+                                <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">Column 3</th>
                                 <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">Url</th>
                                 <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">Actions</th>
                             </tr>
@@ -22,9 +22,7 @@
                                 @foreach ($data as $item )
                                 <tr>
                                     <td class="px-6 py-3 text-sm whitespace-no-wrap">
-                                        {{ $item->type }} 
-                                    {{-- {!! $item->is_default_home ? '<span class="text-xs font-bold text-green-400">[Default Home Page]</span>' : ''!!}
-                                    {!! $item->is_default_not_found ? '<span class="text-xs font-bold text-red-400">[Default Not Found Page]</span>' : ''!!} --}}
+                                        {{ $item->role }} 
                                     </td>
                                     <td class="px-6 py-3 text-sm whitespace-no-wrap">
                                         <a class="text-indigo-600 hover:text-indigo-900">
@@ -53,13 +51,16 @@
                         </tbody>
                     </table>
     </div>
-   
-        {{ $data->links() }}
+    <div class="mt-5">
+         {{ $data->links() }}
+    </div>
+
+       
     {{-- Modal Form for update and create --}}
     <div class="mt-4">
         <x-jet-dialog-modal wire:model="modalFormVisible">
             <x-slot name="title">
-                {{ __('Save Navigation Item') }} {{ $modelId }}
+                {{ __('Save Page') }} {{ $modelId }}
             </x-slot>
     </div>
             <x-slot name="content">
@@ -128,7 +129,7 @@
     <!-- Delete User Confirmation Modal -->
     <x-jet-dialog-modal wire:model="modalFormDeleteVisible">
         <x-slot name="title">
-            {{ __('Delete Navigation Item') }}
+            {{ __('Delete Page') }}
         </x-slot>
 
         <x-slot name="content">

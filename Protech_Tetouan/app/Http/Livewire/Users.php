@@ -4,12 +4,12 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
-use App\Models\{{}};
+use App\Models\User;
 // used to validate slugs in our form validation 
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
 
-class {{}} extends Component
+class Users extends Component
 {
     use WithPagination,WithFileUploads;
     public $modalFormVisible = false ;
@@ -18,7 +18,8 @@ class {{}} extends Component
     /**
     * put your custom public properties here
     */
-
+    public $email,$name;
+    public $role = 'user';
     
         /**
      * rules for validation
@@ -28,7 +29,9 @@ class {{}} extends Component
 
     public function rules(){
         return [
- 
+            'name' => 'required',
+            'email' => 'required',
+            'role' => 'required',
         ];
     }
 
@@ -40,7 +43,9 @@ class {{}} extends Component
      */
     public function modelData(){
         $data = [
-
+            'name' => $this->name,
+            'email' => $this->email,
+            'role' => $this->role,
         ];
         return $data;
     }
@@ -52,8 +57,12 @@ class {{}} extends Component
      * @return void
      */
     public function loadModel(){
-        $data = {{}}::find($this->modelId);
+        $data = User::find($this->modelId);
         // Assign the variables here
+        
+        $this->name = $data->name;
+        $this->email =$data->email;
+        $this->role = $data->role;
     }        
 
       
@@ -63,26 +72,12 @@ class {{}} extends Component
      * @return void
      */
     public function read(){
-        return {{}}::paginate(5); //4
+        return User::paginate(5); //4
     }    
-    /**
-     * createShowModal shows the modal for creating
-     * new navigation menu
-     * @return void
-     */
-    public function createShowModal(){
-        $this->resetValidation();
-        $this->reset();
-        $this->modalFormVisible = true;
-    }
+   
+  
     
-    public function create(){
-        $this->validate();
-        {{}}::create($this->modelData()); //5
-        $this->modalFormVisible = false;
-        $this->reset();
-
-    }  
+ 
     
        /**
      * update function
@@ -91,7 +86,7 @@ class {{}} extends Component
      */
     public function update(){
         $this->validate();
-        {{}}::find($this->modelId)->update($this->modelData()); //6
+        User::find($this->modelId)->update($this->modelData()); //6
         $this->modalFormVisible = false;
     }
 
@@ -102,7 +97,7 @@ class {{}} extends Component
      * @return void
      */
     public function delete(){
-        {{}}::find($this->modelId)->delete(); //7
+        User::find($this->modelId)->delete(); //7
         $this->modalFormDeleteVisible = false;
         $this->resetPage();
     }
@@ -131,7 +126,7 @@ class {{}} extends Component
      */
     public function render()
     {
-        return view('livewire.{{}}',[
+        return view('livewire.users',[
             'data' => $this->read(),
         ]);
     }

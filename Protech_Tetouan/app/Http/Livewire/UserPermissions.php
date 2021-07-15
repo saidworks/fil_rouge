@@ -4,12 +4,12 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
-use App\Models\{{}};
+use App\Models\UserPermission;
 // used to validate slugs in our form validation 
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
 
-class {{}} extends Component
+class UserPermissions extends Component
 {
     use WithPagination,WithFileUploads;
     public $modalFormVisible = false ;
@@ -18,7 +18,7 @@ class {{}} extends Component
     /**
     * put your custom public properties here
     */
-
+    public $routeName,$role;
     
         /**
      * rules for validation
@@ -28,7 +28,8 @@ class {{}} extends Component
 
     public function rules(){
         return [
- 
+           'role' => 'required',
+           'routeName' => 'required'
         ];
     }
 
@@ -40,7 +41,8 @@ class {{}} extends Component
      */
     public function modelData(){
         $data = [
-
+            'role' => $this->role,
+            'routeName' => $this->routeName
         ];
         return $data;
     }
@@ -52,8 +54,10 @@ class {{}} extends Component
      * @return void
      */
     public function loadModel(){
-        $data = {{}}::find($this->modelId);
+        $data = UserPermission::find($this->modelId);
         // Assign the variables here
+        $this->role = $data->role;
+        $this->routeName = $data->route_name;
     }        
 
       
@@ -63,7 +67,7 @@ class {{}} extends Component
      * @return void
      */
     public function read(){
-        return {{}}::paginate(5); //4
+        return UserPermission::paginate(5); //4
     }    
     /**
      * createShowModal shows the modal for creating
@@ -78,7 +82,7 @@ class {{}} extends Component
     
     public function create(){
         $this->validate();
-        {{}}::create($this->modelData()); //5
+        UserPermission::create($this->modelData()); //5
         $this->modalFormVisible = false;
         $this->reset();
 
@@ -91,7 +95,7 @@ class {{}} extends Component
      */
     public function update(){
         $this->validate();
-        {{}}::find($this->modelId)->update($this->modelData()); //6
+        UserPermission::find($this->modelId)->update($this->modelData()); //6
         $this->modalFormVisible = false;
     }
 
@@ -102,7 +106,7 @@ class {{}} extends Component
      * @return void
      */
     public function delete(){
-        {{}}::find($this->modelId)->delete(); //7
+        UserPermission::find($this->modelId)->delete(); //7
         $this->modalFormDeleteVisible = false;
         $this->resetPage();
     }
@@ -131,7 +135,7 @@ class {{}} extends Component
      */
     public function render()
     {
-        return view('livewire.{{}}',[
+        return view('livewire.user-permissions',[
             'data' => $this->read(),
         ]);
     }
