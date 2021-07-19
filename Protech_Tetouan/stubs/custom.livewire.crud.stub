@@ -4,22 +4,86 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
-use App\Models\{{}};
+use App\Models\Page;
 // used to validate slugs in our form validation 
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
-
-class {{}} extends Component
-{
-    use WithPagination,WithFileUploads;
+class Pages extends Component
+{   
     public $modalFormVisible = false ;
     public $modalFormDeleteVisible = false;
+    public $slug;
+    public $title;
+    public $content;
+    public $image;
     public $modelId;
-    /**
-    * put your custom public properties here
-    */
-
+    use WithPagination,WithFileUploads;
+    public $isSetToDefaultHomePage;
+    public $isSetToDefaultNotFoundPage;
     
+    
+    /**
+     * Shows the form modal
+     * of the create function 
+     * @return void
+     */
+    public function createShowModal(){
+         $this->resetValidation();
+         $this->reset();
+         $this->modalFormVisible = true;
+    }    
+    
+    /**
+     * create function 
+     *
+     * @return void
+     */
+    public function create(){
+        $this->validate();
+        $this->unassignDefaultHomePage();
+        $this->unassignDefaultNotFoundPage();
+        Page::create($this->modelData());
+        $this->modalFormVisible = false;
+        $this->reset();
+    }    
+    /**
+     * read function 
+     *
+     * @return void
+     */
+    public function read(){
+        return Page::paginate(5);
+    }
+    
+     /**
+     * update page function 
+     *
+     * @return void
+     */
+    public function update(){
+        // problem with validation for slug when trying the update
+        // $this->reset();
+        $this->validate();
+        $this->unassignDefaultHomePage();
+        $this->unassignDefaultNotFoundPage();
+        Page::find($this->modelId)->update($this->modelData());
+        $this->modalFormVisible = false;
+        
+    }
+    
+    /**
+     * delete page function 
+     *
+     * @return void
+     */
+    public function delete(){
+        Page::destroy($this->modelId);
+        $this->modalFormDeleteVisible = false;
+        //reset paginator 
+        $this->resetPage();
+    }
+
+
         /**
      * rules for validation
      *
@@ -28,112 +92,131 @@ class {{}} extends Component
 
     public function rules(){
         return [
- 
+            'title' => 'required',
+            'slug' => ['required', Rule::unique('pages','slug')->ignore($this->modelId)],
+            'content' => 'required',
+            'image' => 'nullable|image|max:1024'
         ];
     }
 
-  
     /**
-     * modelData the data for the model mapped
-     * in this component
+     * modalData return the data the create function 
+     *
      * @return void
      */
     public function modelData(){
-        $data = [
-
+        // in case i want to use prefix solution $image_name = $this->title.$this->image->getClientOriginalName();
+        // for separate controller solution for products, services and posts
+        if($this->image){
+        $image_name = $this->image->getClientOriginalName();}
+        else{
+            $image_name = null;
+        }
+        $data= [
+            'title' => $this->title,
+            'slug' => $this->slug,
+            'content' => $this->content,
+            'image' => $image_name,
+            'is_default_home' => $this->isSetToDefaultHomePage,
+            'is_default_not_found' => $this->isSetToDefaultNotFoundPage
         ];
+        if($this->image){
+        $this->image->storeAs('public/img',$image_name);}
         return $data;
-    }
-
-     /**
-     * loadModel : loads the previous data of the 
-     *  entry to update
-     * @param  mixed $id
-     * @return void
-     */
-    public function loadModel(){
-        $data = {{}}::find($this->modelId);
-        // Assign the variables here
     }        
-
-      
     /**
-     * read entries and paginate them
-     * 5 entries per page
+     * two functions that update the value of default page home
+     *  if 404 checked and vice versa
      * @return void
      */
-    public function read(){
-        return {{}}::paginate(5); //4
-    }    
-    /**
-     * createShowModal shows the modal for creating
-     * new navigation menu
-     * @return void
-     */
-    public function createShowModal(){
-        $this->resetValidation();
-        $this->reset();
-        $this->modalFormVisible = true;
+    public function updatedIsSetToDefaultHomePage(){
+        $this->isSetToDefaultNotFoundPage = null;
+    }
+    public function updatedIsSetToDefaultNotFoundPage(){
+        $this->isSetToDefaultHomePage= null;
     }
     
-    public function create(){
-        $this->validate();
-        {{}}::create($this->modelData()); //5
-        $this->modalFormVisible = false;
-        $this->reset();
-
-    }  
     
-       /**
-     * update function
-     *
-     * @return void
-     */
-    public function update(){
-        $this->validate();
-        {{}}::find($this->modelId)->update($this->modelData()); //6
-        $this->modalFormVisible = false;
-    }
-
-    
-    /**
-     * delete function
-     *
-     * @return void
-     */
-    public function delete(){
-        {{}}::find($this->modelId)->delete(); //7
-        $this->modalFormDeleteVisible = false;
-        $this->resetPage();
-    }
    
     /**
-     * updateShowModal show update
-     * modal
+     * updatedTitle take the value of the title 
+     * and assign to the slug everytime it's changed
+     * @return void
+     */
+    public function updatedTitle($value){
+       $this->slug = Str::slug($value);
+    }    
+
+        
+    /**
+     * unassign Default HomePage from the database table
+     *  following function unassign the not found page from the database table
+     * @return void
+     */
+    private function unassignDefaultHomePage(){
+        if($this->isSetToDefaultHomePage != null){
+            Page::where('is_default_home',true)->update([
+                'is_default_home' => false,
+            ]);
+        }
+    }
+    private function unassignDefaultNotFoundPage(){
+        if($this->isSetToDefaultNotFoundPage  != null){
+            Page::where('is_default_not_found',true)->update([
+                'is_default_not_found'=> false,
+            ]);
+        }
+    }
+    /**
+     * updateShowModal shows the form modal 
+     *  in update mode
+     * @param  mixed $id
      * @return void
      */
     public function updateShowModal($id){
         $this->resetValidation();
         $this->reset();
-        $this->modalFormVisible = true;
         $this->modelId = $id;
+        $this->modalFormVisible = true;
         $this->loadModel();
     }
-
-      public function deleteShowModal($id){
-        $this->modalFormDeleteVisible = true;
-        $this->modelId = $id;
-    }
+    
     /**
-     * render
+     * loadModel loads the data of the component
+     *  
+     * @return void
+     */
+    public function loadModel(){
+        $data = Page::find($this->modelId);
+        $this->title = $data->title;
+        $this->slug = $data->slug;
+        $this->content = $data->content;
+        $this->image = $data->image;
+        $this->isSetToDefaultHomePage = !$data->is_default_home ? null:true;
+        $this->isSetToDefaultNotFoundPage = !$data->is_default_not_found ? null:true;
+
+    }
+    
+    /**
+     * shows delete Modal
+     *
+     * @param  mixed $id
+     * @return void
+     */
+    public function deleteShowModal($id){
+       $this->modelId = $id;
+       $this->modalFormDeleteVisible = true;
+    }
+    
+    /**
+     * the livewire render function 
      *
      * @return void
      */
     public function render()
     {
-        return view('livewire.{{}}',[
+        return view('livewire.pages', [
             'data' => $this->read(),
         ]);
     }
-       
 }
