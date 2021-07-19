@@ -4,11 +4,11 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
-use App\Models\{{}}; 
+use App\Models\Page;
 // used to validate slugs in our form validation 
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
-class {{}} extends Component
+class Pages extends Component
 {   
     public $modalFormVisible = false ;
     public $modalFormDeleteVisible = false;
@@ -18,6 +18,8 @@ class {{}} extends Component
     public $image;
     public $modelId;
     use WithPagination,WithFileUploads;
+    public $isSetToDefaultHomePage;
+    public $isSetToDefaultNotFoundPage;
     
     
     /**
@@ -38,7 +40,9 @@ class {{}} extends Component
      */
     public function create(){
         $this->validate();
-        {{}}::create($this->modelData());
+        $this->unassignDefaultHomePage();
+        $this->unassignDefaultNotFoundPage();
+        Page::create($this->modelData());
         $this->modalFormVisible = false;
         $this->reset();
     }    
@@ -48,7 +52,7 @@ class {{}} extends Component
      * @return void
      */
     public function read(){
-        return {{}}::paginate(5);
+        return Page::paginate(5);
     }
     
      /**
@@ -60,7 +64,9 @@ class {{}} extends Component
         // problem with validation for slug when trying the update
         // $this->reset();
         $this->validate();
-        {{}}::find($this->modelId)->update($this->modelData());
+        $this->unassignDefaultHomePage();
+        $this->unassignDefaultNotFoundPage();
+        Page::find($this->modelId)->update($this->modelData());
         $this->modalFormVisible = false;
         
     }
@@ -71,7 +77,7 @@ class {{}} extends Component
      * @return void
      */
     public function delete(){
-        {{}}::destroy($this->modelId);
+        Page::destroy($this->modelId);
         $this->modalFormDeleteVisible = false;
         //reset paginator 
         $this->resetPage();
@@ -118,8 +124,49 @@ class {{}} extends Component
         $this->image->storeAs('public/img',$image_name);}
         return $data;
     }        
-
+    /**
+     * two functions that update the value of default page home
+     *  if 404 checked and vice versa
+     * @return void
+     */
+    public function updatedIsSetToDefaultHomePage(){
+        $this->isSetToDefaultNotFoundPage = null;
+    }
+    public function updatedIsSetToDefaultNotFoundPage(){
+        $this->isSetToDefaultHomePage= null;
+    }
     
+    
+   
+    /**
+     * updatedTitle take the value of the title 
+     * and assign to the slug everytime it's changed
+     * @return void
+     */
+    public function updatedTitle($value){
+       $this->slug = Str::slug($value);
+    }    
+
+        
+    /**
+     * unassign Default HomePage from the database table
+     *  following function unassign the not found page from the database table
+     * @return void
+     */
+    private function unassignDefaultHomePage(){
+        if($this->isSetToDefaultHomePage != null){
+            Page::where('is_default_home',true)->update([
+                'is_default_home' => false,
+            ]);
+        }
+    }
+    private function unassignDefaultNotFoundPage(){
+        if($this->isSetToDefaultNotFoundPage  != null){
+            Page::where('is_default_not_found',true)->update([
+                'is_default_not_found'=> false,
+            ]);
+        }
+    }
     /**
      * updateShowModal shows the form modal 
      *  in update mode
@@ -140,11 +187,14 @@ class {{}} extends Component
      * @return void
      */
     public function loadModel(){
-        $data = {{}}::find($this->modelId);
+        $data = Page::find($this->modelId);
         $this->title = $data->title;
         $this->slug = $data->slug;
         $this->content = $data->content;
         $this->image = $data->image;
+        $this->isSetToDefaultHomePage = !$data->is_default_home ? null:true;
+        $this->isSetToDefaultNotFoundPage = !$data->is_default_not_found ? null:true;
+
     }
     
     /**
@@ -165,7 +215,7 @@ class {{}} extends Component
      */
     public function render()
     {
-        return view('livewire.{{}}', [
+        return view('livewire.pages', [
             'data' => $this->read(),
         ]);
     }
