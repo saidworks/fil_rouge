@@ -42,6 +42,9 @@ Route::group(['middleware' => ['auth:sanctum','verified','accessrole']], functio
                 Route::get('/user-permissions',function(){
                     return view('admin.user-permissions');
                 })->name('user-permissions');
+                Route::get('/products',function(){
+                    return view('admin.products');
+                })->name('products');
                 
     }
     );
