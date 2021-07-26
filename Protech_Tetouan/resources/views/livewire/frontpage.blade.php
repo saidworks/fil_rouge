@@ -67,6 +67,75 @@
                 <article>
                     <div class="text-sm">
                         {!! $content !!} 
+                        @if(str_contains(strtolower($title),'home'))
+                        <div class="flex flex-col items-center justify-center md:flex-row">
+                            <div class="flex flex-col justify-center mr-0 transition-all duration-1000 ease-in-out md:mr-2">
+                                <div slot="bottom-left" class="max-w-xs">
+                                    <div class="p-5 m-2 mt-4 shadow-md"><img class="object-scale-down h-30" src="https://s.spielwarenmesse.de/fileadmin/data_archive/Relaunch_Spielwarenmesse/magazine/header/20190618_Header_Memes.jpg" alt="step3">
+                                        <div class="mt-1 mb-2 text-xs font-bold text-teal-700 uppercase">Blog post</div>
+                                        <div class="mb-2 text-xl font-bold">Big case study</div>
+                                        <div class="truncate">Lorem ipsum dolor sit amet consectetur adipisicing elit. Id ut vel facilis iste, dicta est minus alias, aliquam, velit nisi quo assumenda porro dignissimos doloremque temporibus eum saepe aspernatur ab.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-col justify-center mx-0 transition-all duration-1000 ease-in-out md:mx-4">
+                                <div slot="bottom-center" class="max-w-xs">
+                                    <div class="p-5 m-2 mt-4 shadow-md"><img class="object-scale-down h-30" src="https://s.spielwarenmesse.de/fileadmin/data_archive/Relaunch_Spielwarenmesse/magazine/header/20190618_Header_Memes.jpg" alt="step3">
+                                        <div class="mt-1 mb-2 text-xs font-bold text-teal-700 uppercase">Blog post</div>
+                                        <div class="mb-2 text-xl font-bold">Big case study</div>
+                                        <div class="truncate">Lorem ipsum dolor sit amet consectetur adipisicing elit. Id ut vel facilis iste, dicta est minus alias, aliquam, velit nisi quo assumenda porro dignissimos doloremque temporibus eum saepe aspernatur ab.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-col justify-center ml-0 transition-all duration-1000 ease-in-out md:ml-2">
+                                <div slot="bottom-right" class="max-w-xs">
+                                    <div class="p-5 m-2 mt-4 shadow-md"><img class="object-scale-down h-30" src="https://s.spielwarenmesse.de/fileadmin/data_archive/Relaunch_Spielwarenmesse/magazine/header/20190618_Header_Memes.jpg" alt="step3">
+                                        <div class="mt-1 mb-2 text-xs font-bold text-teal-700 uppercase">Blog post</div>
+                                        <div class="mb-2 text-xl font-bold">Big case study</div>
+                                        <div class="truncate">Lorem ipsum dolor sit amet consectetur adipisicing elit. Id ut vel facilis iste, dicta est minus alias, aliquam, velit nisi quo assumenda porro dignissimos doloremque temporibus eum saepe aspernatur ab.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @elseif(str_contains(strtolower($title),'contact'))
+                        <form class="w-full max-w-lg">
+                            <div class="flex flex-wrap mb-6 -mx-3">
+                              <div class="w-full px-3">
+                                <label class="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase" for="grid-password">
+                                  Nickname
+                                </label>
+                                <input class="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500" id="nick" type="text">
+                                <p class="text-xs italic text-gray-600">Remove if not needed</p>
+                              </div>
+                            </div>
+                            <div class="flex flex-wrap mb-6 -mx-3">
+                              <div class="w-full px-3">
+                                <label class="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase" for="grid-password">
+                                  E-mail
+                                </label>
+                                <input class="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500" id="email" type="email">
+                                <p class="text-xs italic text-gray-600">Some tips - as long as needed</p>
+                              </div>
+                            </div>
+                            <div class="flex flex-wrap mb-6 -mx-3">
+                              <div class="w-full px-3">
+                                <label class="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase" for="grid-password">
+                                  Message
+                                </label>
+                                <textarea class="block w-full h-48 px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none resize-none  no-resize focus:outline-none focus:bg-white focus:border-gray-500" id="message"></textarea>
+                                <p class="text-xs italic text-gray-600">Re-size can be disabled by set by resize-none / resize-y / resize-x / resize</p>
+                              </div>
+                            </div>
+                            <div class="md:flex md:items-center">
+                              <div class="md:w-1/3">
+                                <button class="px-4 py-2 font-bold text-white bg-teal-400 rounded shadow hover:bg-teal-400 focus:shadow-outline focus:outline-none" type="button">
+                                  Send
+                                </button>
+                              </div>
+                              <div class="md:w-2/3"></div>
+                            </div>
+                          </form>
+                        @endif
                     </div>
                     
                 </article>

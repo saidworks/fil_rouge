@@ -27,6 +27,7 @@
                                     <td class="px-6 py-3 text-sm whitespace-no-wrap">
                                         {!!$item->description !!}</td>
                                     <td class="px-6 py-3 text-sm whitespace-no-wrap">{{$item->price}}</td>
+                                    <td class="w-16 px-6 py-3 text-sm whitespace-no-wrap md:w-32 lg:w-48"><img src="{{ asset('storage/img/'.$item->picture) }}"></td>
                                     <td class="px-6 py-3 text-sm whitespace-no-wrap">
                                         <x-jet-button wire:click="updateShowModal({{ $item->id }})">
                                             {{ __('Update') }}
