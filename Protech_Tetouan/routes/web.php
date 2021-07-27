@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Frontpage;
-
+use App\Http\Livewire\BootstrapFrontPage;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,11 +45,17 @@ Route::group(['middleware' => ['auth:sanctum','verified','accessrole']], functio
                 Route::get('/products',function(){
                     return view('admin.products');
                 })->name('products');
+                Route::get('/services',function(){
+                    return view('admin.services');
+                })->name('services');
                 
     }
     );
 
 
-    Route::get('/{urlslug}', Frontpage::class);
-    Route::get('/', Frontpage::class);
+    // Route::get('/{urlslug}', Frontpage::class);
+    // Route::get('/', Frontpage::class);
+
+    Route::get('/{urlslug}', BootstrapFrontpage::class);
+    Route::get('/', BootstrapFrontpage::class);
 

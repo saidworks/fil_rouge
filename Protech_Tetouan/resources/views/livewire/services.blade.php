@@ -10,9 +10,10 @@
                     <table class='min-w-full divide-y divide-gray-200'>
                         <thead>
                             <tr>
-                                <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">Title</th>
-                                <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">Link</th>
-                                <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">Content</th>
+                                <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">Name</th>
+                                <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">Description</th>
+                                <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">Price</th>
+                                <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">Picture</th>
                                 <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">Actions</th>
                             </tr>
                         </thead>
@@ -21,15 +22,12 @@
                                 @foreach ($data as $item )
                                 <tr>
                                     <td class="px-6 py-3 text-sm whitespace-no-wrap">
-                                        {{ $item->title }} 
-                                    {!! $item->is_default_home ? '<span class="text-xs font-bold text-green-400">[Default Home Page]</span>' : ''!!}
-                                    {!! $item->is_default_not_found ? '<span class="text-xs font-bold text-red-400">[Default Not Found Page]</span>' : ''!!}
+                                        {{ $item->name }} 
                                     </td>
                                     <td class="px-6 py-3 text-sm whitespace-no-wrap">
-                                        <a class="text-indigo-600 hover:text-indigo-900"
-                                            href="{{ URL::to('/'.$item->slug) }}" 
-                                            target="_blank"> {{ $item->slug }}</a></td>
-                                    <td class="flex flex-wrap max-w-xs px-6 py-3 text-sm">{!! $item->content !!}</td>
+                                        {!!$item->description !!}</td>
+                                    <td class="px-6 py-3 text-sm whitespace-no-wrap">{{$item->price}}</td>
+                                    <td class="w-16 px-6 py-3 text-sm whitespace-no-wrap md:w-32 lg:w-48"><img src="{{ asset('storage/img/'.$item->picture) }}"></td>
                                     <td class="px-6 py-3 text-sm whitespace-no-wrap">
                                         <x-jet-button wire:click="updateShowModal({{ $item->id }})">
                                             {{ __('Update') }}
@@ -59,42 +57,28 @@
     </div>
             <x-slot name="content">
                 <div class="mt-4">
-                    <x-jet-label for="title" value="{{ __('Title') }}" />
-                    <x-jet-input id="title" class="block w-full mt-1" type="text" name="title" wire:model.debounce.800ms='title' />
-                    @error('title') <span class="error"> {{ $message }}</span> @enderror
+                    <x-jet-label for="name" value="{{ __('Name') }}" />
+                    <x-jet-input id="name" class="block w-full mt-1" type="text" name="name" wire:model.debounce.800ms='name' />
+                    @error('name') <span class="error"> {{ $message }}</span> @enderror
                 </div>  
 
                 <div class="mt-4">
-                    <x-jet-label for="slug" value="{{ __('Slug') }}" /> 
-                    <span class="items-center px-3 mt-1 text-sm text-gray-500 border border-r-0 border-gray-300 rounded-1-md bg-gray-50">
-                        https://localhost:8000/
-                    </span>
+                    <x-jet-label for="price" value="{{ __('Price') }}" /> 
                     {{-- debounce avoid to many requests at the same time --}}
-                    <x-jet-input id="slug" class="block w-full mt-1 transition duration-150 ease-in-out rounded rounded-r-md sm:text-sm sm:leading-5" wire:model.debounce.800ms='slug' type="text" name="slug" placeholder="url-slug" />
-                    @error('slug') <span class="error"> {{ $message }}</span> @enderror
+                    <x-jet-input id="price" class="block w-full mt-1 transition duration-150 ease-in-out rounded rounded-r-md sm:text-sm sm:leading-5" wire:model.debounce.800ms='price' type="number" name="slug" placeholder="price" />
+                    @error('price') <span class="error"> {{ $message }}</span> @enderror
                 </div>
-                <div class="mt-4">
-                    <label for="">
-                        <input class="form-checkbox" type="checkbox" value="{{ $isSetToDefaultHomePage }}" wire:model="isSetToDefaultHomePage">
-                        <span class="ml-2 text-sm text-gray-600">Set as the default Home Page</span>
-                    </label>
-                </div>  
-                <div class="mt-4">
-                    <label for="">
-                        <input class="form-checkbox" type="checkbox" value="{{ $isSetToDefaultNotFoundPage }}" wire:model="isSetToDefaultNotFoundPage">
-                        <span class="ml-2 text-sm text-red-600">Set as the default 404 Page</span>
-                    </label>
-                </div> 
+               
 
                 <div class="mt-4">
-                    <x-jet-label for="content" value="{{ __('Content') }}" />
+                    <x-jet-label for="description" value="{{ __('Description') }}" />
                     <div class="rounded-md shadow-sm">
                         <div class="mt-1 bg-white">
                             <div class="body-content" wire:ignore>
                                 <trix-editor 
                                 class='trix-editor'
                                 x-ref="trix"
-                                wire:model.debounce.100000ms="content"
+                                wire:model.debounce.100000ms="description"
                                 wire:key="trix-content-unique-key">
 
                                 </trix-editor>
@@ -104,7 +88,7 @@
                     @error('content') <span class="error"> {{ $message }}</span> @enderror
                 </div>   
                 <div class="mt-1">
-                    <input type="file" wire:model.debounce.100000ms="image" name="image" id="">
+                    <input type="file" wire:model.debounce.100000ms="picture" name="picture" id="picture">
                 </div>
             </x-slot>
 
