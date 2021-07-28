@@ -7,7 +7,10 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="mx-auto navbar-nav">
             @foreach($topNavLinks as $item)
-            <li class="px-4 nav-item"><a class="nav-link" href="{{ url($item->slug) }}">{{ $item->label}}</a></li>
+            @if (!str_contains(strtolower($item->slug),'home'))
+              <li class="px-4 nav-item"><a class="nav-link" href="{{ url($item->slug) }}">{{ $item->label}}</a></li>
+            @endif
+           
             @endforeach
           </ul>
         </div>

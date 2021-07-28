@@ -24,7 +24,8 @@ class UserPermission extends Model
             'dashboard',
             'products',
             'services',
-            'reservations'
+            'reservations',
+            'annonces',
         ];
 
     }    

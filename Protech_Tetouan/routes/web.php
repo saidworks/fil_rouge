@@ -20,6 +20,10 @@ use App\Http\Livewire\BootstrapFrontPage;
 //     ->get('/dashboard', function () {return view('dashboard'); })->name('dashboard');
 
 Route::group(['middleware' => ['auth:sanctum','verified','accessrole']], function(){
+                //annonces
+                Route::get('/annonces',function(){
+                    return view('admin.annonces');
+                })->name('annonces');
                 //dashboard
                 Route::get('/dashboard',function(){
                     return view('dashboard');

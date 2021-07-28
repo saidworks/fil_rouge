@@ -1,13 +1,21 @@
 
  <x-header :topNavLinks='$topNavLinks'></x-header>
 <div class="container mt-4 body page">
+        {{-- home --}}
         @if(str_contains(strtolower($title),'home'))
-        <x-carousel></x-carousel>
+                <x-carousel></x-carousel>
         @endif
-
+        @if(!str_contains(strtolower($title),'home'))
         <div class="h3">{{ $title }}</div>
-        <div class="text-danger">{!! $content !!}</div>
-
+        @endif
+        <div class="text-danger font-weight-bold text-capitalize">{!! $content !!}</div>
+        @if(str_contains(strtolower($title),'home'))
+        <div class="container mt-4">
+                @foreach ( $annonces as $annonce )
+                <x-annonce :annonce='$annonce'></x-annonce>  
+                @endforeach
+        </div>
+        @endif
         @if(str_contains(strtolower($title),'contact'))
                 <x-contact-form></x-contact-form>
                 @livewire('contact-form')
@@ -15,11 +23,11 @@
         @if(str_contains(strtolower($title),'produit'))
         <div class="container mt-4">
                 <div class="row">
-                @foreach ( $products as $product )
-                <x-product :product='$product'></x-product>  
-                @endforeach
+                        @foreach ( $products as $product )
+                        <x-product :product='$product'></x-product>  
+                        @endforeach
+                </div>
         </div>
-</div>
        @endif
        @if(str_contains(strtolower($title),'service'))
                 @foreach ( $services as $service )

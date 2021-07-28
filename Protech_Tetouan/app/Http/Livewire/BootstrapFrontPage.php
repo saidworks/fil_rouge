@@ -78,12 +78,23 @@ class BootstrapFrontPage extends Component
         ->orderBy('created_at','asc')
         ->get();
     } 
-
+    
+    /**
+     * services data from db
+     *
+     * @return void
+     */
     public function services(){
         return DB::table('services')
         ->orderBy('created_at','asc')
         ->get();
     } 
+
+    public function annonces(){
+        return DB::table('annonces')
+        ->orderBy('created_at','asc')
+        ->get();
+    }
     /**
      * render
      *
@@ -96,6 +107,7 @@ class BootstrapFrontPage extends Component
             'topNavLinks' => $this->TopNavLinks(),
             'products' => $this->products(),
             'services' => $this->services(),
+            'annonces' => $this->annonces(),
         ])->layout('layouts.bootstrap-front-page');
     }
   
