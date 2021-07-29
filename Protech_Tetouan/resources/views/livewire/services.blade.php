@@ -12,6 +12,7 @@
                             <tr>
                                 <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">Name</th>
                                 <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">Description</th>
+                                <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">Duration</th>
                                 <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">Price</th>
                                 <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">Picture</th>
                                 <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">Actions</th>
@@ -26,6 +27,7 @@
                                     </td>
                                     <td class="px-6 py-3 text-sm whitespace-no-wrap">
                                         {!!$item->description !!}</td>
+                                    <td class="px-6 py-3 text-sm whitespace-no-wrap">{{$item->duration}}</td>
                                     <td class="px-6 py-3 text-sm whitespace-no-wrap">{{$item->price}}</td>
                                     <td class="w-16 px-6 py-3 text-sm whitespace-no-wrap md:w-32 lg:w-48"><img src="{{ asset('storage/img/'.$item->picture) }}"></td>
                                     <td class="px-6 py-3 text-sm whitespace-no-wrap">
@@ -68,7 +70,12 @@
                     <x-jet-input id="price" class="block w-full mt-1 transition duration-150 ease-in-out rounded rounded-r-md sm:text-sm sm:leading-5" wire:model.debounce.800ms='price' type="number" name="slug" placeholder="price" />
                     @error('price') <span class="error"> {{ $message }}</span> @enderror
                 </div>
-               
+                <div class="mt-4">
+                    <x-jet-label for="duration" value="{{ __('Duration') }}" /> 
+                    {{-- debounce avoid to many requests at the same time --}}
+                    <x-jet-input id="duration" class="block w-full mt-1 transition duration-150 ease-in-out rounded rounded-r-md sm:text-sm sm:leading-5" wire:model.debounce.1000ms='duration' type="number" name="duration" placeholder="duration" />
+                    @error('duration') <span class="error"> {{ $message }}</span> @enderror
+                </div>
 
                 <div class="mt-4">
                     <x-jet-label for="description" value="{{ __('Description') }}" />
@@ -87,6 +94,7 @@
                     </div>
                     @error('content') <span class="error"> {{ $message }}</span> @enderror
                 </div>   
+                
                 <div class="mt-1">
                     <input type="file" wire:model.debounce.100000ms="picture" name="picture" id="picture">
                 </div>

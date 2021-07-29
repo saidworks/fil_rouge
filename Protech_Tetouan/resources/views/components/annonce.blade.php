@@ -10,7 +10,8 @@
         <div class="card-body">
           <h5 class="card-title">{{ $annonce->title }}</h5>
           <p class="card-text">{!! $annonce->body !!}</p>
-          <p class="card-text"><small class="text-muted">Last updated {{ $annonce->updated_at }}</small></p>
+          <p class="card-text"><small class="text-muted">Last updated 
+            {{ \Carbon\Carbon::parse($annonce->updated_at)->diffForHumans() }}</small></p>
         </div>
       </div>
     </div>

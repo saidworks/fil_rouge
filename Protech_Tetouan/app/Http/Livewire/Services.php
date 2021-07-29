@@ -17,6 +17,7 @@ class Services extends Component
     public $description;
     public $picture;
     public $modelId;
+    public $duration;
     use WithPagination,WithFileUploads;
     
     
@@ -89,7 +90,8 @@ class Services extends Component
             'name' => 'required',
             'price' => 'required',
             'description' => 'required',
-            'picture' => 'nullable|image|max:1024'
+            'picture' => 'nullable|image|max:1024',
+            'duration' => 'required',
         ];
     }
 
@@ -111,6 +113,7 @@ class Services extends Component
             'price' => $this->price,
             'description' => $this->description,
             'picture' => $picture_name,
+            'duration' => $this->duration,
             'user_id' => auth()->user()->id,
         ];
         if($this->picture){
@@ -141,6 +144,7 @@ class Services extends Component
     public function loadModel(){
         $data = Service::find($this->modelId);
         $this->name = $data->name;
+        $this->duration = $data->duration;
         $this->price = $data->price;
         $this->description = $data->description;
         $this->picture = $data->picture;

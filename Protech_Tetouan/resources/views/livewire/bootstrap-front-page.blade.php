@@ -6,9 +6,9 @@
                 <x-carousel></x-carousel>
         @endif
         @if(!str_contains(strtolower($title),'home'))
-        <div class="h3">{{ $title }}</div>
+        <div class="h2 font-weight-bold">{{ $title }}</div>
         @endif
-        <div class="text-danger font-weight-bold text-capitalize">{!! $content !!}</div>
+        <div class="text-muted h4">{!! $content !!}</div>
         @if(str_contains(strtolower($title),'home'))
         <div class="container mt-4">
                 @foreach ( $annonces as $annonce )
@@ -30,9 +30,13 @@
         </div>
        @endif
        @if(str_contains(strtolower($title),'service'))
+       <div class="container mt-4">
+                <div class="row">
                 @foreach ( $services as $service )
                 <x-service :service='$service'></x-service>  
                 @endforeach
+                </div>
+        </div>
         @endif
         @if(str_contains(strtolower($title),'reference'))
         <x-references></x-references>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookingController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Frontpage;
 use App\Http\Livewire\BootstrapFrontPage;
@@ -56,10 +57,12 @@ Route::group(['middleware' => ['auth:sanctum','verified','accessrole']], functio
     }
     );
 
+// tailwind front to be developped further to learn more about this css framework
+// Route::get('/{urlslug}', Frontpage::class);
+// Route::get('/', Frontpage::class);
 
-    // Route::get('/{urlslug}', Frontpage::class);
-    // Route::get('/', Frontpage::class);
+Route::get('/{urlslug}', BootstrapFrontpage::class);
+Route::get('/', BootstrapFrontpage::class);
 
-    Route::get('/{urlslug}', BootstrapFrontpage::class);
-    Route::get('/', BootstrapFrontpage::class);
-
+//Bookings
+Route::get('/bookings/create',BookingController::class);
