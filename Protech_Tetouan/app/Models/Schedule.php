@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use DateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\ScheduleUnavailability;
 
 class Schedule extends Model
 {
@@ -15,4 +15,7 @@ class Schedule extends Model
         'end_time' => 'datetime',
 
     ];
+    public function unavailabilities(){
+        return $this->hasMany(ScheduleUnavailability::class);
+    }
 }

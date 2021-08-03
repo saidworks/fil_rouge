@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\BookingController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Frontpage;
+use App\Http\Livewire\CreateBooking;
+use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\BootstrapFrontPage;
+use App\Http\Controllers\BookingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,9 +34,9 @@ Route::group(['middleware' => ['auth:sanctum','verified','accessrole']], functio
                 Route::get('/pages',function(){
                     return view('admin.pages');
                 })->name('pages');
-                Route::get('/register',function(){
-                    return view('admin.pages');
-                })->name('register');
+                // Route::get('/register',function(){
+                //     return view('admin.pages');
+                // })->name('register');
                 //Navigation menus
                 Route::get('/navigation-menus',function(){
                     return view('admin.navigation-menus');
@@ -54,6 +55,9 @@ Route::group(['middleware' => ['auth:sanctum','verified','accessrole']], functio
                     return view('admin.services');
                 })->name('services');
                 
+                //Bookings
+                Route::get('/bookings/create',CreateBooking::class)->name('bookings.create');
+                
     }
     );
 
@@ -63,6 +67,3 @@ Route::group(['middleware' => ['auth:sanctum','verified','accessrole']], functio
 
 Route::get('/{urlslug}', BootstrapFrontpage::class);
 Route::get('/', BootstrapFrontpage::class);
-
-//Bookings
-Route::get('/bookings/create',BookingController::class);

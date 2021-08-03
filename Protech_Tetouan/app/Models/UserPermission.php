@@ -24,7 +24,7 @@ class UserPermission extends Model
             'dashboard',
             'products',
             'services',
-            'reservations',
+            'bookings.create',
             'annonces',
         ];
 

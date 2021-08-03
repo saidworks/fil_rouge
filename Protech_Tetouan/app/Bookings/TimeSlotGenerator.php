@@ -7,11 +7,14 @@ use Carbon\CarbonInterval;
 
 class TimeSlotGenerator{
     protected $interval;
-    public const INCREMENT = 30;
+    public const INCREMENT = 15;
     public $schedule;
+    public $service;
     public function __construct(Schedule $schedule, Service $service)
     {
         $this->schedule = $schedule;
+        $this->service = $service;
+        //generate slots 
         $this->interval = CarbonInterval::minutes(self::INCREMENT)
         ->toPeriod(
             $schedule->date->setTimeFrom($schedule->starts_time),
