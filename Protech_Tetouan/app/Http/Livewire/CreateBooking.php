@@ -31,8 +31,8 @@ class CreateBooking extends Component
 
     }    
     /**
-     * getSelectedServiceProperty
-     *
+     * Get the selected employee from the UI
+     *  assign it to a new property named selectedEmployee
      * @return void
      */
     public function getSelectedEmployeeProperty(){
