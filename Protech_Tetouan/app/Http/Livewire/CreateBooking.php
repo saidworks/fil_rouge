@@ -2,23 +2,33 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Employee;
+use Carbon\Carbon;
 use App\Models\Service;
 use Livewire\Component;
+use App\Models\Employee;
 
 class CreateBooking extends Component
 {
     //get employees list to display in UI
     public $employees;
     //this is the variable that will be used to store data
+    // I need to add id for authenticated user
     public $state = [
         'service' => null,
         'employee' => null,
+        'time' => null,
     ];
 
     //initialize collection employees
     public function mount(){
         $this->employees = collect();
+    }
+    protected $listeners = [
+        'updated-booking-time' => 'setTime'  
+    ];
+
+    public function setTime($time){
+        $this->state['time'] = $time;
     }
     // updated hook -> state array -> service property
     public function updatedStateService($serviceId){
@@ -27,9 +37,22 @@ class CreateBooking extends Component
             $this->employees = collect();
             return;
         }
+        $this->clearTime(); 
         $this->employees = $this->selectedService->employees;
 
-    }    
+    }   
+         
+    public function clearTime(){
+        $this->state['time'] = ''; 
+    }
+    /**
+     * update time when employee updated
+     *
+     * @return void
+     */
+    public function updatedStateEmployee(){
+        $this->clearTime();
+    }
     /**
      * Get the selected employee from the UI
      *  assign it to a new property named selectedEmployee
@@ -52,6 +75,19 @@ class CreateBooking extends Component
         }
         return Service::find($this->state['service']);
     }
+    
+    /**
+     * when all data entered return true
+     *
+     * @return void
+     */
+    public function getHasDetailsToBookProperty(){
+        return $this->state['service']  && $this->state['employee']  && $this->state['time'];
+    }
+    public function getTimeObjectProperty(){
+        return Carbon::createFromTimeStamp($this->state['time']);
+    }
+    
     public function render()
     {
         $services = Service::get();
