@@ -1270,6 +1270,9 @@ select {
 .h-20 {
 	height: 5rem;
 }
+.h-11 {
+	height: 2.75rem;
+}
 .max-h-52 {
 	max-height: 13rem;
 }
@@ -1516,6 +1519,9 @@ select {
 }
 .border-2 {
 	border-width: 2px;
+}
+.border-0 {
+	border-width: 0px;
 }
 .border-b-2 {
 	border-bottom-width: 2px;

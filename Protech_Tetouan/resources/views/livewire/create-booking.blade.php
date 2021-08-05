@@ -1,7 +1,9 @@
 {{-- use layout build using tailwindcss --}}
 <div class="max-w-sm p-5 m-6 mx-auto bg-gray-200 rounded-lg">
-   <form action="">
-      <div class="mb-6">{{ var_dump($state) }}</div> 
+   <form wire:submit.prevent="createBooking">
+      {{-- <div class="mb-6">{{ var_dump($state) }}</div> 
+      *{{        var_dump(auth()->user()->name)
+      }}    --}}
     <p class="text-xl">Reservations</p>
         <div class="mb-6">
             <label for="service" class="inline-block">Select service</label>
@@ -35,11 +37,27 @@
                 on {{ $this->timeObject->format('D jS M Y') }} at {{ $this->timeObject->format('g:i A') }}
             </div>
         </div>
+        
         <div class="mb-6">
             <div class="mb-3">
                 <label for="appointment" class="inline-block mb-2 font-bold text-gray-700">Your name</label>
-                <input type="text" name="name" id="name" class="w-full h-10 bg-white rounded-lg">
+                <input type="text" name="name" id="name" class="w-full h-10 bg-white rounded-lg"  wire:model.defer="state.name">
+                @error('state.name')
+                    <div class="mt-2 text-sm font-semibold text-red-500">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
+            <div class="mb-3">
+                <label for="appointment" class="inline-block mb-2 font-bold text-gray-700">Your email</label>
+                <input type="email" name="email" id="email" class="w-full h-10 bg-white rounded-lg" wire:model.defer='state.email'  />
+                @error('state.email')
+                <div class="mt-2 text-sm font-semibold text-red-500">
+                    {{ $message }}
+                </div>
+            @enderror
+            </div>
+            <button class="w-full px-6 py-2 mt-3 mb-3 text-lg text-center text-white bg-indigo-500 border-0 rounded h-11 focus:outline-none hover:bg-indigo-600" type="submit">Book now</button>
         </div>
     @endif    
         

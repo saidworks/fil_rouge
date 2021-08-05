@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Livewire\Frontpage;
+use App\Http\Livewire\ShowBooking;
 use App\Http\Livewire\CreateBooking;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\BootstrapFrontPage;
@@ -55,8 +56,7 @@ Route::group(['middleware' => ['auth:sanctum','verified','accessrole']], functio
                     return view('admin.services');
                 })->name('services');
                 
-                //Bookings
-                Route::get('/bookings/create',CreateBooking::class)->name('bookings.create');
+               
                 
     }
     );
@@ -67,3 +67,6 @@ Route::group(['middleware' => ['auth:sanctum','verified','accessrole']], functio
 
 Route::get('/{urlslug}', BootstrapFrontpage::class);
 Route::get('/', BootstrapFrontpage::class);
+ //Bookings
+ Route::get('/bookings/create',CreateBooking::class)->name('bookings.create');
+ Route::get('/bookings/{appointment:uuid}',ShowBooking::class)->name('bookings.show');

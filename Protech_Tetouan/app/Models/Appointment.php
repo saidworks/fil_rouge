@@ -14,6 +14,8 @@ class Appointment extends Model
         'date',
         'start_time',
         'end_time',
+        'client_name',
+        'client_email'
     ];
     protected $casts = [
         'date' => 'datetime',
@@ -22,7 +24,7 @@ class Appointment extends Model
 
     ];
     public static function booted(){
-        // when the model is creating call this closure
+        // Elequont event => when the model is creating call this closure
         static::creating(function($model){
             $model->uuid = Str::uuid();
             $model->token = Str::random(32);
