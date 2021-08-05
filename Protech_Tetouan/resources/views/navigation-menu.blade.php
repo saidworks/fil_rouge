@@ -5,11 +5,11 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex items-center flex-shrink-0">
-                    <a href="{{ route('dashboard') }}">
-                        <x-jet-application-mark class="block w-auto h-9" />
+                    <a class="w-20" href="{{ route('dashboard') }}">
+                       <img  src="{{ asset('storage/img/logo.png') }}" />
                     </a>
                 </div>
-
+            @if (auth()->user()->role == 'admin')
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('annonces') }}" :active="request()->routeIs('annonces')">
@@ -35,7 +35,7 @@
                     </x-jet-nav-link>
                 </div>
             </div>
-
+            
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <!-- Teams Dropdown -->
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
@@ -86,7 +86,7 @@
                         </x-jet-dropdown>
                     </div>
                 @endif
-
+                @endif
                 <!-- Settings Dropdown -->
                 <div class="relative ml-3">
                     <x-jet-dropdown align="right" width="48">
@@ -198,7 +198,7 @@
                         {{ __('Log Out') }}
                     </x-jet-responsive-nav-link>
                 </form>
-
+            
                 <!-- Team Management -->
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
                     <div class="border-t border-gray-200"></div>
