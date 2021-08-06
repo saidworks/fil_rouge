@@ -15,6 +15,13 @@ class ShowBooking extends Component
             throw new AuthorizationException();
         }
     }
+    public function cancelBooking(){
+        $this->appointment->update(
+            [
+                'cancelled_at' => now()
+            ]
+            );
+    }
     public function render()
     {
         return view('livewire.show-booking');

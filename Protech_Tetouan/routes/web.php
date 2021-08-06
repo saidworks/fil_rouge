@@ -68,5 +68,7 @@ Route::group(['middleware' => ['auth:sanctum','verified','accessrole']], functio
 Route::get('/{urlslug}', BootstrapFrontpage::class);
 Route::get('/', BootstrapFrontpage::class);
  //Bookings
+
+ //problem in dashboard navbar and 
  Route::get('/bookings/create',CreateBooking::class)->name('bookings.create');
  Route::get('/bookings/{appointment:uuid}',ShowBooking::class)->name('bookings.show');

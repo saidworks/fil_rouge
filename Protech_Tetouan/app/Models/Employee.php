@@ -27,7 +27,8 @@ class Employee extends Model
             ->get();
     }
     public function appointmentsForDate(Carbon $date){
-        return $this->appointments()->whereDate('date',$date)->get();
+        // added a scope not cancelled 
+        return $this->appointments()->notCancelled()->whereDate('date',$date)->get();
     }
     public function appointments(){
         return $this->hasMany(Appointment::class);

@@ -12,4 +12,22 @@
            </div>
        </div>
    </div>
+   @if(!$appointment->isCancelled())
+        <button class="w-full px-6 py-2 mt-3 mb-3 text-lg text-center text-white bg-pink-500 border-0 rounded h-11 focus:outline-none hover:bg-indigo-600" type="button"
+        x-data ="{
+            confirmCancellation(){
+                if(window.confirm('Are you sure?')){
+                {{-- link a method from livewire component --}}
+                    @this.call('cancelBooking')
+                }
+            }
+        }"
+        x-on:click ="confirmCancellation" 
+        >
+        Cancel booking
+            </button>
+   @endif
+   @if($appointment->isCancelled())
+            <p> Your booking has been cancelled </p>
+   @endif
 </div>
