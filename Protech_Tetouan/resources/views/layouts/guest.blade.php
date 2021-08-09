@@ -17,7 +17,15 @@
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
     <body>
-        <div class="font-sans text-gray-900 antialiased">
+        <header class="text-gray-600 body-font">
+            <div class="container flex flex-col flex-wrap items-center p-5 mx-auto md:flex-row">
+              <a class="flex items-center w-20 mb-4 font-medium text-gray-900 title-font md:mb-0" href="#">
+                <img  src="{{ asset('storage/img/logo.png') }}" />
+              </a>
+           
+            </div>
+          </header>
+        <div class="font-sans antialiased text-gray-900">
             {{ $slot }}
         </div>
     </body>

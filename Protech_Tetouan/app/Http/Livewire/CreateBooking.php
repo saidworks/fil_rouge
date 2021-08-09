@@ -129,6 +129,6 @@ class CreateBooking extends Component
     {
         $services = Service::get();
         $employees = $this->employees;
-        return view('livewire.create-booking',compact('services','employees'));
+        return view('livewire.create-booking',compact('services','employees'))->layout('layouts.frontpage');
     }
 }

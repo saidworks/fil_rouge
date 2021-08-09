@@ -16,8 +16,11 @@
                 @endforeach
         </div>
         @endif
+        @if(str_contains(strtolower($title),'sommes'))
+                <x-qui-sommes-nous></x-qui-sommes-nous>
+        @endif
         @if(str_contains(strtolower($title),'contact'))
-                <x-contact-form></x-contact-form>
+                {{-- <x-contact-form></x-contact-form> --}}
                 @livewire('contact-form')
         @endif
         @if(str_contains(strtolower($title),'produit'))

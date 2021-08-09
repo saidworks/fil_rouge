@@ -54,12 +54,8 @@ Route::group(['middleware' => ['auth:sanctum','verified','accessrole']], functio
                 })->name('products');
                 Route::get('/services',function(){
                     return view('admin.services');
-                })->name('services');
-                
-               
-                
-    }
-    );
+                })->name('services');               
+    });
 
 // tailwind front to be developped further to learn more about this css framework
 // Route::get('/{urlslug}', Frontpage::class);
@@ -67,8 +63,8 @@ Route::group(['middleware' => ['auth:sanctum','verified','accessrole']], functio
 
 Route::get('/{urlslug}', BootstrapFrontpage::class);
 Route::get('/', BootstrapFrontpage::class);
- //Bookings
-
- //problem in dashboard navbar and 
- Route::get('/bookings/create',CreateBooking::class)->name('bookings.create');
- Route::get('/bookings/{appointment:uuid}',ShowBooking::class)->name('bookings.show');
+ 
+//Bookings
+//problem in dashboard navbar and 
+Route::get('/bookings/create',CreateBooking::class)->name('bookings.create');
+Route::get('/bookings/{appointment:uuid}',ShowBooking::class)->name('bookings.show');
