@@ -8,85 +8,118 @@ body {
     width: 100%;
 }
 
+
 /*** start nav bar ***/
+
 .navbar {
     background-color: darkred;
 }
+
 .navbar-default {
     border: none;
     border-radius: unset;
 }
+
 .navbar-brand {
     padding: 0;
 }
-.navbar-brand > img {
+
+.navbar-brand>img {
     height: 50px;
     width: auto;
 }
+
 .navbar-light .navbar-nav .nav-link {
     color: beige;
     text-decoration: none;
     font-size: 18px
 }
+
+
 /*** end nav bar ***/
 
+
 /*** start page  ***/
+
 .page {
     min-height: calc(100vh - 239px);
 }
+
+
 /*** end page ***/
 
+
 /*** start carousel  ***/
+
 .carousel-inner {
-    max-width: 60%;
+    max-width: 80%;
     text-align: center;
     margin: auto;
-    max-height: 300px;
+    max-height: 500px;
 }
+
 .carousel-item {
-    border: 1px solid  lightgrey;
+    border: 1px solid lightgrey;
     border-radius: 10px;
     /* background-color: white; */
     overflow: hidden;
     max-height: 300px;
 }
-.carousel-item > img {
+
+.carousel-item>img {
     border-radius: 10px;
     text-align: center;
     justify-content: center;
     margin: auto;
     margin-top: -30%;
 }
-.carousel-control-next, .carousel-control-prev {
+
+.carousel-control-next,
+.carousel-control-prev {
     color: grey;
 }
+
+
 /*** end carousel ***/
 
+
 /*** start grid  ***/
+
 .card {
     border-radius: 24px;
     overflow: hidden;
 }
+
+
 /*** end grid  ***/
 
+
 /*** start references  ***/
+
 .ref-container {
     padding: 16px;
 }
+
 .ref-profile {
     width: 100%;
 }
+
 .profile-img {
     width: 56px;
     height: 56px;
     border-radius: 56px;
 }
+
 .ref-text {
     text-align: left;
 }
+
+
 /*** end references  ***/
 
+
 /*** start buttons ***/
+
 .btn-primary {
     background-color: darkred;
     border-color: darkred;
@@ -97,9 +130,13 @@ body {
     border-color: darkred;
     opacity: 0.7;
 }
+
+
 /*** end buttons ***/
 
+
 /*** start footer ***/
+
 .footer {
     background-color: darkred;
     margin-top: 24px;
@@ -107,29 +144,36 @@ body {
     padding: 8px 0;
     font-size: 14px;
 }
+
 .footer-logo {
     width: 96px;
     margin-bottom: 8px;
 }
+
 .footer-first {
     font-size: 12px;
 }
+
 .footer-second {
     margin: auto;
     text-align: center;
 }
+
 .footer-third {
     margin: auto;
 }
-.social-footer > a:hover {
+
+.social-footer>a:hover {
     cursor: pointer;
 }
+
 .social-logo {
     height: 36px;
     padding: 6px;
 }
-/*** end footer ***/
 
+
+/*** end footer ***/
 
 @media only screen and (max-width: 890px) {
     .carousel-inner {
@@ -139,7 +183,7 @@ body {
     .carousel-item {
         max-height: unset;
     }
-    .carousel-item > img {
+    .carousel-item>img {
         margin-top: 0;
     }
 }
@@ -149,4 +193,3 @@ body {
         padding: 0;
     }
 }
-

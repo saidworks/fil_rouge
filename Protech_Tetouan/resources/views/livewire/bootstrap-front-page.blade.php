@@ -10,7 +10,7 @@
         @endif
         <div class="text-muted h4">{!! $content !!}</div>
         @if(str_contains(strtolower($title),'home'))
-        <div class="container mt-4">
+        <div class="container">
                 @foreach ( $annonces as $annonce )
                 <x-annonce :annonce='$annonce'></x-annonce>  
                 @endforeach

@@ -1219,9 +1219,6 @@ select {
 .mb-3 {
 	margin-bottom: 0.75rem;
 }
-.mr-5 {
-	margin-right: 1.25rem;
-}
 .block {
 	display: block;
 }
@@ -2055,10 +2052,6 @@ select {
 	--tw-bg-opacity: 1;
 	background-color: rgba(31, 41, 55, var(--tw-bg-opacity));
 }
-.hover\:bg-gray-200:hover {
-	--tw-bg-opacity: 1;
-	background-color: rgba(229, 231, 235, var(--tw-bg-opacity));
-}
 .hover\:text-gray-500:hover {
 	--tw-text-opacity: 1;
 	color: rgba(107, 114, 128, var(--tw-text-opacity));
@@ -2273,12 +2266,12 @@ select {
 		margin-left: 1.5rem;
 	}
 
-	.sm\:ml-0 {
-		margin-left: 0px;
-	}
-
 	.sm\:ml-auto {
 		margin-left: auto;
+	}
+
+	.sm\:ml-0 {
+		margin-left: 0px;
 	}
 
 	.sm\:block {
@@ -2493,10 +2486,6 @@ select {
 
 	.md\:mb-0 {
 		margin-bottom: 0px;
-	}
-
-	.md\:ml-auto {
-		margin-left: auto;
 	}
 
 	.md\:grid {
