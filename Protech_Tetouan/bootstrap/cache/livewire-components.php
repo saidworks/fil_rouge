@@ -1,0 +1,16 @@
+<?php return array (
+  'annonces' => 'App\\Http\\Livewire\\Annonces',
+  'booking-calendar' => 'App\\Http\\Livewire\\BookingCalendar',
+  'bootstrap-front-page' => 'App\\Http\\Livewire\\BootstrapFrontPage',
+  'contact-form' => 'App\\Http\\Livewire\\ContactForm',
+  'counter' => 'App\\Http\\Livewire\\Counter',
+  'create-booking' => 'App\\Http\\Livewire\\CreateBooking',
+  'frontpage' => 'App\\Http\\Livewire\\Frontpage',
+  'navigation-menus' => 'App\\Http\\Livewire\\NavigationMenus',
+  'pages' => 'App\\Http\\Livewire\\Pages',
+  'products' => 'App\\Http\\Livewire\\Products',
+  'services' => 'App\\Http\\Livewire\\Services',
+  'show-booking' => 'App\\Http\\Livewire\\ShowBooking',
+  'user-permissions' => 'App\\Http\\Livewire\\UserPermissions',
+  'users' => 'App\\Http\\Livewire\\Users',
+);
