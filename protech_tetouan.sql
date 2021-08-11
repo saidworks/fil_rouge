@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le :  lun. 02 août 2021 à 10:09
+-- Généré le :  mer. 11 août 2021 à 13:24
 -- Version du serveur :  8.0.18
 -- Version de PHP :  7.3.11
 
@@ -57,20 +57,32 @@ CREATE TABLE `appointments` (
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `employee_id` bigint(20) UNSIGNED NOT NULL,
   `service_id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `client_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `client_email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `date` date NOT NULL,
   `start_time` time NOT NULL,
   `end_time` time NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `cancelled_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `appointments`
 --
 
-INSERT INTO `appointments` (`id`, `uuid`, `token`, `employee_id`, `service_id`, `user_id`, `date`, `start_time`, `end_time`, `created_at`, `updated_at`) VALUES
-(1, 'cdbd0ed7-28d0-473b-83f0-90bbf2fdcf5b', '5tK6sNQOdYzHxo59T3NfCkj67BBFrOkq', 1, 4, 3, '2021-08-02', '15:00:00', '16:00:00', '2021-08-02 08:18:31', '2021-08-02 08:18:31');
+INSERT INTO `appointments` (`id`, `uuid`, `token`, `employee_id`, `service_id`, `client_name`, `client_email`, `date`, `start_time`, `end_time`, `created_at`, `updated_at`, `cancelled_at`) VALUES
+(1, 'cdbd0ed7-28d0-473b-83f0-90bbf2fdcf5b', '5tK6sNQOdYzHxo59T3NfCkj67BBFrOkq', 1, 4, 'Said', 'zitouni.sd@gmail.com', '2021-08-02', '15:00:00', '16:00:00', '2021-08-02 08:18:31', '2021-08-02 08:18:31', NULL),
+(2, 'cdbd0ed7-28d0-473b-83f0-90bbf2fdcf5b', '5tK6sNQOdYzHxo59T3NfCkj67BBFrOkq', 1, 4, '', '', '2021-08-02', '14:00:00', '15:00:00', '2021-08-02 08:18:31', '2021-08-02 08:18:31', NULL),
+(3, '16d7043c-f9ea-4985-a352-f4b1026c7296', 'bnuoc6c4xz71GoHMDyctCHfh7swC9yjs', 3, 3, 'Said', 'zitouni.sd@gmail.com', '2021-08-05', '13:00:00', '13:45:00', '2021-08-05 11:39:05', '2021-08-05 11:39:05', NULL),
+(4, 'ddde5f19-2e7e-4bd9-93db-0905d3516c34', 'YbGtE0R38w0P3b1yPCeYxnPJYrrpdIYD', 3, 3, 'Said', 'said.storage@gmail.com', '2021-08-05', '13:00:00', '13:45:00', '2021-08-05 11:54:45', '2021-08-05 11:54:45', NULL),
+(5, '02d4918f-3912-40fb-82e9-02c836e81eb2', 'xieYXu3flictghTCDuyAkHuIGGcwEDw3', 3, 3, 'Said', 'zitouni.sd@gmail.com', '2021-08-05', '14:00:00', '14:45:00', '2021-08-05 12:58:02', '2021-08-05 12:58:02', NULL),
+(6, 'c78effb8-1358-45d4-b112-9131ac8b765b', 'GwPcdzx65aUk1ZjtmrrMacFldwG3JkSe', 3, 3, 'سعيد', 'zitouni.sd@gmail.com', '2021-08-05', '14:45:00', '15:30:00', '2021-08-05 12:58:47', '2021-08-05 12:58:47', NULL),
+(7, '8515ca92-d2f6-4e71-8427-614f7256c76d', 'mGi3YJvKZchMztWpV98EYK70WE9QAzrh', 3, 3, 'Said ZITOUNI', 'zitouni.sd@gmail.com', '2021-08-05', '15:30:00', '16:15:00', '2021-08-05 13:07:09', '2021-08-05 13:07:09', NULL),
+(8, '38f58360-c657-444b-b4f2-7c9f8de283dd', '1MV6OUzG38RGEuS6IJPNx3XySjIDB33I', 3, 3, 'Said ZITOUNI', 'zitouni.sd@gmail.com', '2021-08-05', '16:15:00', '17:00:00', '2021-08-05 13:08:51', '2021-08-05 13:08:51', NULL),
+(9, '7e40b03c-4dea-4fa1-93d0-4bb67c50cfee', 'MyjbbaDrHa4NAbd5Owi8A8LxZS4fVnVG', 3, 3, 'tata test', 'tata@toto.com', '2021-08-07', '09:00:00', '09:45:00', '2021-08-06 20:25:03', '2021-08-06 21:03:18', '2021-08-06 21:03:18'),
+(10, 'a1ea9a03-6cf4-4de2-8ef0-f36fa18e8d2a', '2aE5SIJcTqvjijfsdG3NnC9bOSKYUbYf', 1, 4, 'Said ZITOUNI', 'zitouni.sd@gmail.com', '2021-08-10', '11:30:00', '12:30:00', '2021-08-09 13:24:16', '2021-08-09 13:24:20', '2021-08-09 13:24:20'),
+(11, '2fb67949-e131-4c55-bede-9ec3640d1c9d', 'DOoLMNWAWTYQnXB6PPecKGaedqDpadxp', 2, 3, 'Said', 'zitouni.sd@gmail.com', '2021-08-10', '09:00:00', '09:45:00', '2021-08-09 13:55:39', '2021-08-09 13:55:39', NULL);
 
 -- --------------------------------------------------------
 
@@ -91,7 +103,8 @@ CREATE TABLE `employees` (
 
 INSERT INTO `employees` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (1, 'Hamid', '2021-07-27 23:00:00', '2021-07-28 23:00:00'),
-(2, 'Tariq', '2021-07-18 23:00:00', '2021-07-26 23:00:00');
+(2, 'Tariq', '2021-07-18 23:00:00', '2021-07-26 23:00:00'),
+(3, 'Kamal', '2021-07-18 23:00:00', '2021-07-26 23:00:00');
 
 -- --------------------------------------------------------
 
@@ -113,7 +126,8 @@ CREATE TABLE `employee_service` (
 
 INSERT INTO `employee_service` (`id`, `service_id`, `employee_id`, `created_at`, `updated_at`) VALUES
 (1, 4, 1, '2021-06-30 23:00:00', '2021-07-02 23:00:00'),
-(2, 3, 2, '2021-07-27 23:00:00', '2021-07-28 23:00:00');
+(2, 3, 2, '2021-07-27 23:00:00', '2021-07-28 23:00:00'),
+(3, 3, 3, '2021-07-27 23:00:00', '2021-07-28 23:00:00');
 
 -- --------------------------------------------------------
 
@@ -173,7 +187,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (23, '2021_07_29_104220_create_employee_service_table', 14),
 (24, '2021_07_29_122626_create_schedules_table', 15),
 (25, '2021_07_31_120315_create_schedule_unavailabilities_table', 16),
-(26, '2021_08_02_081447_create_appointments_table', 17);
+(26, '2021_08_02_081447_create_appointments_table', 17),
+(27, '2021_08_05_093442_drop_user_id_from_appointments', 18),
+(28, '2021_08_05_121439_add_prefix_client', 19),
+(29, '2021_08_06_211021_add_cancelled_at_to_appointments', 20);
 
 -- --------------------------------------------------------
 
@@ -201,7 +218,8 @@ INSERT INTO `navigation_menus` (`id`, `sequence`, `type`, `label`, `slug`, `crea
 (10, 2, 'TopNav', 'Qui-sommes nous', 'qui-sommes-nous', '2021-07-13 20:58:03', '2021-07-27 11:57:16'),
 (14, 3, 'TopNav', 'Nos produits', 'nos-produits', '2021-07-27 11:55:10', '2021-07-27 12:01:06'),
 (15, 4, 'TopNav', 'Nos services', 'nos-services', '2021-07-27 11:55:29', '2021-07-27 12:00:58'),
-(16, 5, 'TopNav', 'Nos references', 'nos-references', '2021-07-27 12:03:15', '2021-07-27 12:03:15');
+(16, 5, 'TopNav', 'Nos references', 'nos-references', '2021-07-27 12:03:15', '2021-07-27 12:03:15'),
+(17, 6, 'TopNav', 'Reservation', 'bookings/create', '2021-08-09 13:12:51', '2021-08-09 13:13:40');
 
 -- --------------------------------------------------------
 
@@ -227,7 +245,7 @@ CREATE TABLE `pages` (
 
 INSERT INTO `pages` (`id`, `is_default_home`, `is_default_not_found`, `title`, `slug`, `content`, `image`, `created_at`, `updated_at`) VALUES
 (1, 1, NULL, 'Home', 'home', '<div>Nouveautés et Offres<br><br></div>', NULL, '2021-07-09 07:01:29', '2021-07-28 12:01:18'),
-(2, NULL, NULL, 'Qui-sommes nous', 'qui-sommes-nous', '<div>Content of About Us</div>', NULL, '2021-07-09 07:22:38', '2021-07-13 20:57:32'),
+(2, NULL, NULL, 'Qui-sommes nous', 'qui-sommes-nous', '<div>Presentation de Protech Tetouan&nbsp;</div>', NULL, '2021-07-09 07:22:38', '2021-08-09 13:28:59'),
 (3, NULL, NULL, 'Contactez nous', 'contactez-nous', '<div>Veuillez remplier le formulaire suivant , on promets de vous répondre le plus tôt possible</div>', NULL, '2021-07-09 09:21:43', '2021-07-27 12:12:20'),
 (4, NULL, NULL, 'Nos produits', 'nos-produits', '<div>Nos produits de haute qualité en accord avec les spécifications en vigeur&nbsp;</div>', NULL, '2021-07-09 09:42:04', '2021-07-28 11:43:01'),
 (5, NULL, NULL, 'Nos services', 'nos-services', '<div>Services Pages</div>', NULL, '2021-07-09 09:42:22', '2021-07-27 12:00:16'),
@@ -318,7 +336,15 @@ INSERT INTO `schedules` (`id`, `employee_id`, `date`, `starts_time`, `end_time`,
 (3, 2, '2021-07-31', '09:00:00', '17:00:00', '2021-07-03 10:36:36', '2021-07-17 23:00:00'),
 (4, 1, '2021-08-01', '09:00:00', '17:00:00', '2021-07-03 10:36:36', '2021-07-17 23:00:00'),
 (5, 2, '2021-08-01', '09:00:00', '17:00:00', NULL, NULL),
-(6, 1, '2021-08-02', '09:00:00', '17:00:00', NULL, NULL);
+(6, 1, '2021-08-02', '09:00:00', '17:00:00', NULL, NULL),
+(7, 1, '2021-08-04', '09:00:00', '17:00:00', NULL, NULL),
+(8, 2, '2021-08-04', '09:00:00', '17:00:00', NULL, NULL),
+(9, 3, '2021-08-04', '09:00:00', '17:00:00', NULL, NULL),
+(10, 3, '2021-08-05', '09:00:00', '17:00:00', NULL, NULL),
+(11, 3, '2021-08-07', '09:00:00', '17:00:00', NULL, NULL),
+(12, 1, '2021-08-10', '09:00:00', '17:00:00', NULL, NULL),
+(13, 2, '2021-08-10', '09:00:00', '17:00:00', NULL, NULL),
+(14, 3, '2021-08-10', '09:00:00', '17:00:00', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -341,7 +367,9 @@ CREATE TABLE `schedule_unavailabilities` (
 
 INSERT INTO `schedule_unavailabilities` (`id`, `schedule_id`, `start_time`, `end_time`, `created_at`, `updated_at`) VALUES
 (1, 4, '12:00:00', '13:00:00', '2021-07-30 23:00:00', '2021-07-30 23:00:00'),
-(2, 6, '12:00:00', '13:00:00', '2021-08-01 23:00:00', '2021-08-01 23:00:00');
+(2, 6, '12:00:00', '13:00:00', '2021-08-01 23:00:00', '2021-08-01 23:00:00'),
+(3, 10, '12:00:00', '13:00:00', '2021-08-01 23:00:00', '2021-08-01 23:00:00'),
+(4, 11, '12:00:00', '13:00:00', '2021-08-06 23:00:00', '2021-08-06 23:00:00');
 
 -- --------------------------------------------------------
 
@@ -366,14 +394,8 @@ CREATE TABLE `services` (
 --
 
 INSERT INTO `services` (`id`, `name`, `user_id`, `description`, `duration`, `price`, `picture`, `created_at`, `updated_at`) VALUES
-(1, 'TEST', 1, '<div>test</div>', 1000, 123, '2.jpg', '2021-07-27 07:24:21', '2021-07-29 09:27:36'),
-(2, 'traitment', 1, '<div>ttt</div>', 1000, 100, '1.jpg', '2021-07-29 08:42:10', '2021-07-29 09:28:09'),
-(3, 'lavage', 1, '<div>lavage</div>', 100, 120, '1.jpg', '2021-07-29 08:43:11', '2021-07-29 08:43:49'),
-(4, 'traitement', 1, '<div>test</div>', 60, 123, '2.jpg', '2021-07-29 09:03:34', '2021-07-29 09:03:34'),
-(5, 'ttt', 1, '<div>ZFEZFE</div>', NULL, 131424, '2.jpg', '2021-07-29 09:05:59', '2021-07-29 09:05:59'),
-(6, 'TTT', 1, '<div>tttt</div>', NULL, 100, '1.jpg', '2021-07-29 09:17:53', '2021-07-29 09:17:53'),
-(7, 'tEST', 1, '<div>test</div>', NULL, 123, '2.jpg', '2021-07-29 09:22:31', '2021-07-29 09:22:31'),
-(8, 'test', 1, '<div>test</div>', NULL, 100, '2.jpg', '2021-07-29 09:23:50', '2021-07-29 09:23:50');
+(3, 'lavage', 1, '<div>lavage</div>', 45, 120, '1.jpg', '2021-07-29 08:43:11', '2021-07-29 08:43:49'),
+(4, 'traitement', 1, '<div>test</div>', 60, 123, '2.jpg', '2021-07-29 09:03:34', '2021-07-29 09:03:34');
 
 -- --------------------------------------------------------
 
@@ -395,9 +417,10 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('D1DQY08xyvbVd8E9nLZErhMFJV5L8veGnPjE333B', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36', 'YTo3OntzOjY6Il90b2tlbiI7czo0MDoiYmJ2aHdOeVhxVHoyY0VyenBTZEdpY0xUVmJSSHpQeURwRWR0aGp3USI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzc6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9ib29raW5ncy9jcmVhdGUiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjM6InVybCI7YTowOnt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEwJGhyZWVFdGQyZzZFSHhSa0JWbkxoNHVEZC5uZkRsTGFLU2pxMmJqOGQ5ZHJBOFRhMXNLNllhIjtzOjIxOiJwYXNzd29yZF9oYXNoX3NhbmN0dW0iO3M6NjA6IiQyeSQxMCRocmVlRXRkMmc2RUh4UmtCVm5MaDR1RGQubmZEbExhS1NqcTJiajhkOWRyQThUYTFzSzZZYSI7fQ==', 1627896260),
-('joMplrYWGHaZsj39ymSvISUEHmfblriDEZfz8Wtr', 3, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiV1N5THlCbFduSFQ3dzVIZkxTQ2ZpbXlxbUVoZ3NNd2FWOW1PSmROMyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9ib29raW5ncy9jcmVhdGUiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO3M6MTc6InBhc3N3b3JkX2hhc2hfd2ViIjtzOjYwOiIkMnkkMTAkdFBvVGhnNmd4T1hZOE95a3JiMG94dUFmZ2d1WjljdWd5TnpDdkpnU3hTcVE3aWVyazhoU20iO3M6MjE6InBhc3N3b3JkX2hhc2hfc2FuY3R1bSI7czo2MDoiJDJ5JDEwJHRQb1RoZzZneE9YWThPeWtyYjBveHVBZmdndVo5Y3VneU56Q3ZKZ1N4U3FRN2llcms4aFNtIjt9', 1627894799),
-('T9Ga830PtKoqOfXePA3bZVxmagCvc91vkOxyE1g4', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:90.0) Gecko/20100101 Firefox/90.0', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiaGxraURhRVg1MUQweXJiVllYMkkzZ0pvalBoaDBaWUp3SkNHWHJHRSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzg6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC91c2VyLXBlcm1pc3Npb25zIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEwJGhyZWVFdGQyZzZFSHhSa0JWbkxoNHVEZC5uZkRsTGFLU2pxMmJqOGQ5ZHJBOFRhMXNLNllhIjtzOjIxOiJwYXNzd29yZF9oYXNoX3NhbmN0dW0iO3M6NjA6IiQyeSQxMCRocmVlRXRkMmc2RUh4UmtCVm5MaDR1RGQubmZEbExhS1NqcTJiajhkOWRyQThUYTFzSzZZYSI7fQ==', 1627894365);
+('FtXEJy3cRQDoCCAMBmAyovfKRFC8lQRscbcHGnG9', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiNFVqMVhkeFRvN3IwTTFtV296Y0hTaFhYelF1Z25VTDVCcW5jNGJsTSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzQ6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9ub3Mtc2VydmljZXMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1628681574),
+('HRP6co7w6jQym4fcGpVXQumxjmjKi8ZQxWJ9lRTm', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiYUMyRGVob29EclJKNlhUR1NaNVc2ZFJjVVZaUjZhOUdVcDZCNnVnNiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzc6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9ib29raW5ncy9jcmVhdGUiO319', 1628522269),
+('ynfWIy1lFRvhehyMVaWyJVImIrKc0QxWLPsAOzOo', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoibFdnYkVTRFVQenlrWXVQTFdMSkFvNFlLMXhsMHN2ZWdVMTNwd0NDdyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fX0=', 1628517637),
+('ZPHGvTiQLO9QqI3Ofj29X4as6Kjqhlc0har3RBKY', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiMUhmR2NiR3J5eFVLNE0xRWllRnlYNmJscVlUVlFHYVpLMmNpcURYbiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9ib29raW5ncy9jcmVhdGUiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6MTc6InBhc3N3b3JkX2hhc2hfd2ViIjtzOjYwOiIkMnkkMTAkaHJlZUV0ZDJnNkVIeFJrQlZuTGg0dURkLm5mRGxMYUtTanEyYmo4ZDlkckE4VGExc0s2WWEiO30=', 1628681628);
 
 -- --------------------------------------------------------
 
@@ -515,7 +538,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `role`, `name`, `email`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `remember_token`, `current_team_id`, `profile_photo_path`, `created_at`, `updated_at`) VALUES
 (1, 'admin', 'Said ZITOUNI', 'said.storage@gmail.com', NULL, '$2y$10$hreeEtd2g6EHxRkBVnLh4uDd.nfDlLaKSjq2bj8d9drA8Ta1sK6Ya', NULL, NULL, NULL, 1, NULL, '2021-07-07 13:28:46', '2021-07-07 13:28:46'),
 (2, 'user', 'Said Test', 'said.test@gmail.com', '2021-07-14 07:00:00', '$2y$10$hreeEtd2g6EHxRkBVnLh4uDd.nfDlLaKSjq2bj8d9drA8Ta1sK6Ya', NULL, NULL, NULL, 1, NULL, '2021-07-14 06:00:00', '2021-07-14 07:00:00'),
-(3, 'user', 'TEST TATO', 'tata@toto.com', NULL, '$2y$10$tPoThg6gxOXY8Oykrb0oxuAfgguZ9cugyNzCvJgSxSqQ7ierk8hSm', NULL, NULL, NULL, NULL, NULL, '2021-08-02 07:47:13', '2021-08-02 07:47:13');
+(3, 'user', 'TEST TATO', 'tata@toto.com', NULL, '$2y$10$tPoThg6gxOXY8Oykrb0oxuAfgguZ9cugyNzCvJgSxSqQ7ierk8hSm', NULL, NULL, NULL, 2, NULL, '2021-08-02 07:47:13', '2021-08-03 05:54:02');
 
 -- --------------------------------------------------------
 
@@ -565,8 +588,7 @@ ALTER TABLE `annonces`
 ALTER TABLE `appointments`
   ADD PRIMARY KEY (`id`),
   ADD KEY `appointments_employee_id_foreign` (`employee_id`),
-  ADD KEY `appointments_service_id_foreign` (`service_id`),
-  ADD KEY `appointments_user_id_foreign` (`user_id`);
+  ADD KEY `appointments_service_id_foreign` (`service_id`);
 
 --
 -- Index pour la table `employees`
@@ -718,19 +740,19 @@ ALTER TABLE `annonces`
 -- AUTO_INCREMENT pour la table `appointments`
 --
 ALTER TABLE `appointments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT pour la table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `employee_service`
 --
 ALTER TABLE `employee_service`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `failed_jobs`
@@ -742,13 +764,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT pour la table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT pour la table `navigation_menus`
 --
 ALTER TABLE `navigation_menus`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT pour la table `pages`
@@ -772,13 +794,13 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT pour la table `schedules`
 --
 ALTER TABLE `schedules`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT pour la table `schedule_unavailabilities`
 --
 ALTER TABLE `schedule_unavailabilities`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `services`
@@ -837,8 +859,7 @@ ALTER TABLE `user_permissions`
 --
 ALTER TABLE `appointments`
   ADD CONSTRAINT `appointments_employee_id_foreign` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `appointments_service_id_foreign` FOREIGN KEY (`service_id`) REFERENCES `services` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `appointments_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `appointments_service_id_foreign` FOREIGN KEY (`service_id`) REFERENCES `services` (`id`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `employee_service`
