@@ -8,7 +8,7 @@
                         <h5 class="card-title">{{ $service->name }}</h5>
                         <p class="card-text">{!! $service->description !!}</p>
                         <p class="card-text">{!! $service->duration !!} minutes</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <a href="{{ route('bookings.create') }}" class="btn btn-primary">Reserver</a>
                     </div>
                 </div>
             

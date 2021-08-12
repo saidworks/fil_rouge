@@ -7,7 +7,8 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ $product->name }}</h5>
                         <p class="card-text">{!! $product->description !!}</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <p class="card-text text-muted">{!! $product->price !!} DH</p>
+
                     </div>
                 </div>
             
