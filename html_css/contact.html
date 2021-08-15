@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Esthétique Auto - Contact</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+    <!-- Start Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital@1&display=swap" rel="stylesheet">
+    <!-- End Google fonts -->
+
+    <link rel="stylesheet" href="main.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <!-- Start Nav -->
+  <nav class="navbar navbar-expand-lg navbar-light">
+      <a class="navbar-brand" href="./index.html"><img src="./images/logo.png" /></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item px-4"><a class="nav-link" href="./about.html">Qui Sommes Nous?</a></li>
+          <li class="nav-item px-4"><a class="nav-link" href="./services.html">Nos Services</a></li>
+          <li class="nav-item px-4"><a class="nav-link" href="./products.html">Nos Produits</a></li>
+          <li class="nav-item px-4"><a class="nav-link" href="./references.html">Nos Références</a></li>
+          <li class="nav-item px-4"><a class="nav-link" href="./contact.html">Contact</a></li>
+        </ul>
+      </div>
+  </nav>
+  <!-- End Nav -->
+
+  <!-- Start Page -->
+  <div class="container mt-4 page">
+    <div class="h3">Contactez-nous</div>
+
+      <!-- Start Form -->
+      <form class="contact-form">
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Votre email:</label>
+          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Sujet:</label>
+          <select class="form-control" id="exampleFormControlSelect1">
+            <option>---</option>
+            <option>Services</option>
+            <option>Produits</option>
+            <option>Reservations</option>
+            <option>Autre chose</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Message:</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+        <button type="submit" id="contact-submit-button" class="btn btn-primary">Submit</button>
+      </form>
+      
+      <!-- End Form -->
+
+  </div>
+  <!-- End Page -->
+
+  <!-- Start Footer -->
+  <footer class="footer">
+      <div class="container">
+          <div class="row">
+              <div class="col footer-first">
+                  <img class="footer-logo" src="./images/logo.png" />
+                  <div>
+                      <div>phone: </div>
+                      <div>email: </div>
+                      <div>address: </div>
+                  </div>
+              </div>
+              <div class="col footer-second">
+                  <div>Rejoignez nous sur:</div>
+                  <div class="social-footer">
+                      <a href="https://www.facebook.com/Protech2018/" target="_blank" >
+                          <img class="social-logo" src="./images/fb-logo.png"/>
+                      </a>
+                      <a href="https://www.instagram.com/protech_tetouan/" target="_blank" >
+                          <img class="social-logo" src="./images/ig-logo.png"/>
+                      </a>
+                  </div>
+              </div>
+              <div class="col footer-third">
+                  <div>Esthétique Auto Tetouan 2021 votre une entreprise avec des services...</div>
+              </div>
+          </div>
+      </div>
+  </footer>
+  <!-- End Footer -->
+
+</body>
+</html>
