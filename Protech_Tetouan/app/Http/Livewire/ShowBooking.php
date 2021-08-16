@@ -24,6 +24,6 @@ class ShowBooking extends Component
     }
     public function render()
     {
-        return view('livewire.show-booking');
+        return view('livewire.show-booking')->layout('layouts.frontpage');
     }
 }

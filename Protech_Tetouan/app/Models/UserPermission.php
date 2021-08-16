@@ -26,6 +26,7 @@ class UserPermission extends Model
             'services',
             'bookings.create',
             'annonces',
+            'appointments'
         ];
 
     }    

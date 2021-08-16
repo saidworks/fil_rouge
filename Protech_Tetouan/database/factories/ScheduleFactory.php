@@ -32,7 +32,7 @@ class ScheduleFactory extends Factory
         // $startDate = Carbon::createFromTimeStamp($faker->dateTimeBetween('-30 days', '+30 days')->getTimestamp());
         // $endDate = Carbon::createFromFormat('Y-m-d H:i:s', $startDate)->addHour();
         return [
-            'employee_id' => 1,
+            'employee_id' => 4,
             'date' => $date->addDay()->format('Y-m-d'),
             'starts_time' => $date->format('H:i:s'),
             'end_time' => $date->addhours(10)->format('H:i:s'),

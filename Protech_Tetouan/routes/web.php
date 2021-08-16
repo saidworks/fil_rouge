@@ -54,7 +54,10 @@ Route::group(['middleware' => ['auth:sanctum','verified','accessrole']], functio
                 })->name('products');
                 Route::get('/services',function(){
                     return view('admin.services');
-                })->name('services');               
+                })->name('services');   
+                Route::get('/appointments',function(){
+                    return view('admin.appointments');
+                })->name('appointments');             
     });
 
 // tailwind front to be developped further to learn more about this css framework

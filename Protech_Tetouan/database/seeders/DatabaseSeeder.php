@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
             $date->second = 0;
              // \App\Models\User::factory(10)->create();
         \App\Models\Schedule::factory(1)->create([
-            'employee_id' => 1,
+            'employee_id' => 4,
             'date' => $date->addDay()->format('Y-m-d'),
             'starts_time' => $date->format('H:i:s'),
             'end_time' => $date->addhours(10)->format('H:i:s'),
