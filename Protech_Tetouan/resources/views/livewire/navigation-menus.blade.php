@@ -23,14 +23,14 @@
                                 <tr>
                                     <td class="px-6 py-3 text-sm whitespace-no-wrap">
                                         {{ $item->type }} 
-                                    {{-- {!! $item->is_default_home ? '<span class="text-xs font-bold text-green-400">[Default Home Page]</span>' : ''!!}
-                                    {!! $item->is_default_not_found ? '<span class="text-xs font-bold text-red-400">[Default Not Found Page]</span>' : ''!!} --}}
+                                
                                     </td>
                                     <td class="px-6 py-3 text-sm whitespace-no-wrap">
                                         <a class="text-indigo-600 hover:text-indigo-900">
                                              {{ $item->sequence }}</a></td>
                                     <td class="px-6 py-3 text-sm whitespace-no-wrap">{!! $item->label !!}</td>
                                     <td class="px-6 py-3 text-sm whitespace-no-wrap">
+                                        {{-- URL::to generate URL based on domain I am using--}}
                                         <a class="text-indigo-600 hover:text-indigo-900"
                                             href="{{ URL::to($item->slug) }}" 
                                             target="_blank"> {{ $item->slug }}

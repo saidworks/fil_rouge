@@ -25,6 +25,7 @@ class AccessByRole
         {
             $userRole = auth()->user()->role;
             $currentRouteName = Route::currentRouteName();
+            // second part of the condition in case I delete all entries in user permissions
             if( UserPermission::isRoleHasRightToAccess($userRole,$currentRouteName)
                 || in_array($currentRouteName,$this->userAccessRole()[$userRole])){
                 return $next($request);

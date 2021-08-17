@@ -62,6 +62,7 @@ class BootstrapFrontPage extends Component
      * @return void
      */
     public function TopNavLinks(){
+        // here we order by sequence number 
         return DB::table('navigation_menus')
         ->where('type','=','TopNav')
         ->orderBy('sequence','asc')
