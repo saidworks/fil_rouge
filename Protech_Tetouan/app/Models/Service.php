@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use App\Models\Employee;
+use App\Models\Appointment;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Service extends Model
 {
@@ -19,5 +20,8 @@ class Service extends Model
     ];
     public function employees(){
         return $this->belongsToMany(Employee::class);
+    }
+    public function appointments(){
+        return $this->hasMany(Appointment::class);
     }
 }

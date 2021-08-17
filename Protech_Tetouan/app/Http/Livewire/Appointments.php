@@ -27,7 +27,7 @@ class Appointments extends Component
      * @return void
      */
     public function read(){
-        return Appointment::paginate(5);
+        return Appointment::paginate(10);
     }
     
      

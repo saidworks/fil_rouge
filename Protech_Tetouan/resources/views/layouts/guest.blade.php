@@ -19,7 +19,7 @@
     <body>
         <header class="text-gray-600 body-font">
             <div class="container flex flex-col flex-wrap items-center p-5 mx-auto md:flex-row">
-              <a class="flex items-center w-20 mb-4 font-medium text-gray-900 title-font md:mb-0" href="{{ route('/') }}">
+              <a class="flex items-center w-20 mb-4 font-medium text-gray-900 title-font md:mb-0" href="#" }}">
                 <img  src="{{ asset('storage/img/logo.png') }}" />
               </a>
            
